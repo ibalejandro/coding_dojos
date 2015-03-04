@@ -1,0 +1,42 @@
+/* Empty. Add your own CSS if you like */
+.bar-positive {
+  box-shadow: 0px 5px 5px grey;
+}
+
+.textarea {
+  resize: both;
+}
+
+#map {
+  width: 80%;
+  height: 60%;
+  margin: 0 auto;
+}
+
+.scroll {
+  height: 100%;
+}
+
+.item select {
+  font-size: 14px;
+}
+
+#limit {
+  font-size: 20px;
+}
+
+.list input.ng-invalid.ng-touched {
+  background-color: #FA787E;
+}
+
+.list input.ng-valid.ng-touched {
+  background-color: #78FA89;
+}
+
+.list textarea.ng-invalid.ng-touched {
+  background-color: #FA787E;
+}
+
+.list textarea.ng-valid.ng-touched {
+  background-color: #78FA89;
+}

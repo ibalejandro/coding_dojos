@@ -1,0 +1,5 @@
+export ANDROID_HOME=/home/svanegas/Android/Sdk/
+export ANDROID_TOOLS=/home/svanegas/Android/Sdk/tools/
+export ANDROID_PLATFORM_TOOLS=/home/svanegas/Android/Sdk/platform-tools/
+PATH=$PATH:$ANDROID_HOME:$ANDROID_TOOLS:$ANDROID_PLATFORM_TOOLS:.
+echo "Done"

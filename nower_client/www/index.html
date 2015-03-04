@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html data-ng-app="App">
+  <head>
+    <meta charset="utf-8">
+    <!--<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">-->
+    <title>Nower</title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <!--<script src="cordova.js"></script>-->
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <!--<script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>-->
+  </head>
+  <body>
+    <ion-header-bar align-title="center" class="bar-positive">
+      <h1 class="title">Nower</h1>
+    </ion-header-bar>
+    <ion-content>
+      <br>
+      <h3 align="center"><font color=#0C63EE><b>MAKE A PROMO</b></font></h3>
+      <hr>
+      <div class="list">
+        <label class="item item-input item stacked label">
+          <span class="input-label"><font color=#0C63EE>Preview your location</font></span>
+        </label>
+      </div>
+      <div id="map" data-tap-disabled="true" ng-controller="MapCtrl" align="center"></div>
+      <br />
+      <form ng-submit="createPromo(promo)" ng-controller="AppCtrl">
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label"><font color=#0C63EE>Promo title</font></span>
+            <input type="text" placeholder="Promo title" ng-model="promo.title" required>
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label"><font color=#0C63EE>Description</font></span>
+            <textarea rows="5" maxlength="300" placeholder="Description" ng-model="promo.description" required></textarea>
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label"><font color=#0C63EE>Expiration date</font></span>
+            <table width="100%">
+              <tr>
+                <td>
+                  <table width="60%">
+                    <tr>
+                      <td><select ng-model="year" ng-options="year.name for year in years"></select></td>
+                      <td>&nbsp;</td>
+                      <td><select ng-model="month" ng-options="month.name for month in months"></select></td>
+                      <td>&nbsp;</td>
+                      <td><select ng-model="day" ng-options="day.name for day in days"></select></td>
+                    </tr>
+                  </table>
+                </td>
+                <td>
+                  <table width="40%">
+                    <tr>
+                      <td><select ng-model="hour" ng-options="hour.name for hour in hours"></select></td>
+                      <td>&nbsp;:&nbsp;</td>
+                      <td><select ng-model="minute" ng-options="minute.name for minute in minutes"></select></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label"><font color=#0C63EE>People limit</font></span>
+            <input id="limit" type="number" ng-model="promo.people_limit" required>
+          </label>
+        </div>
+        <button class="button button-full button-balanced">
+          Publish
+        </button>
+      </form>
+
+
+      <!--<ion-refresher on-refresh="refresh()"></ion-refresher>
+      <div data-ng-show="!posts.length">
+        <br><br>
+        <center>
+          <h1>Pull to Refresh</h1>
+        </center>
+      </div>
+      <div class="card list" data-ng-repeat="p in posts">
+        <div class="item item-avatar-left">
+          <img data-ng-src="{{ p.author.avatar_URL }}" alt="">
+          <h2>{{ p.author.nice_name }}</h2>
+          <p><a href="{{ p.author.URL }}">{{ p.author.URL }}</a></p>
+          <h4>{{ p.date }}</h4>
+        </div>
+        <div class="item item-body">
+          <h1>{{ p.title }}</h1>
+          <div data-ng-bind-html="p.content"></div>
+        </div>
+      </div>-->
+    </ion-content>
+    <!--
+      The nav bar that will be updated as we navigate between views.
+    -->
+    <!--<ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+    </ion-nav-bar>-->
+    <!--
+      The views will be rendered in the <ion-nav-view> directive below
+      Templates are in the /templates folder (but you could also
+      have templates inline in this html file if you'd like).
+    -->
+    <!--<ion-nav-view></ion-nav-view>-->
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+  </body>
+</html>
