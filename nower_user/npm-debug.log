@@ -1,0 +1,181 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'ripple-emulator' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose node symlink /usr/bin/node
+5 verbose cache add [ 'ripple-emulator', null ]
+6 verbose cache add name=undefined spec="ripple-emulator" args=["ripple-emulator",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'ripple-emulator',
+7 verbose parsed url   path: 'ripple-emulator',
+7 verbose parsed url   href: 'ripple-emulator' }
+8 silly lockFile eb53d4ae-ripple-emulator ripple-emulator
+9 verbose lock ripple-emulator /home/alejandro/.npm/eb53d4ae-ripple-emulator.lock
+10 silly lockFile eb53d4ae-ripple-emulator ripple-emulator
+11 silly lockFile eb53d4ae-ripple-emulator ripple-emulator
+12 verbose addNamed [ 'ripple-emulator', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile c6e72574-ripple-emulator ripple-emulator@
+15 verbose lock ripple-emulator@ /home/alejandro/.npm/c6e72574-ripple-emulator.lock
+16 silly addNameRange { name: 'ripple-emulator', range: '*', hasData: false }
+17 verbose request where is /ripple-emulator
+18 verbose request registry https://registry.npmjs.org/
+19 verbose request id 4a1cf331c36d9aff
+20 verbose url raw /ripple-emulator
+21 verbose url resolving [ 'https://registry.npmjs.org/', './ripple-emulator' ]
+22 verbose url resolved https://registry.npmjs.org/ripple-emulator
+23 verbose request where is https://registry.npmjs.org/ripple-emulator
+24 info trying registry request attempt 1 at 12:52:28
+25 verbose etag "C2BO39QYKPMR0TQYZTXCPNW3J"
+26 http GET https://registry.npmjs.org/ripple-emulator
+27 http 304 https://registry.npmjs.org/ripple-emulator
+28 silly registry.get cb [ 304,
+28 silly registry.get   { date: 'Sun, 01 Mar 2015 17:52:28 GMT',
+28 silly registry.get     server: 'Apache',
+28 silly registry.get     via: '1.1 varnish',
+28 silly registry.get     'last-modified': 'Sun, 01 Mar 2015 17:52:28 GMT',
+28 silly registry.get     'cache-control': 'max-age=60',
+28 silly registry.get     etag: '"C2BO39QYKPMR0TQYZTXCPNW3J"',
+28 silly registry.get     age: '0',
+28 silly registry.get     'x-served-by': 'cache-iad2136-IAD',
+28 silly registry.get     'x-cache': 'MISS',
+28 silly registry.get     'x-cache-hits': '0',
+28 silly registry.get     'x-timer': 'S1425232348.703320,VS0,VE80',
+28 silly registry.get     vary: 'Accept',
+28 silly registry.get     'content-length': '0',
+28 silly registry.get     'keep-alive': 'timeout=10, max=50',
+28 silly registry.get     connection: 'Keep-Alive' } ]
+29 verbose etag https://registry.npmjs.org/ripple-emulator from cache
+30 silly addNameRange number 2 { name: 'ripple-emulator', range: '*', hasData: true }
+31 silly addNameRange versions [ 'ripple-emulator',
+31 silly addNameRange   [ '0.9.15',
+31 silly addNameRange     '0.9.16',
+31 silly addNameRange     '0.9.17',
+31 silly addNameRange     '0.9.18',
+31 silly addNameRange     '0.9.19',
+31 silly addNameRange     '0.9.20',
+31 silly addNameRange     '0.9.21',
+31 silly addNameRange     '0.9.22',
+31 silly addNameRange     '0.9.23',
+31 silly addNameRange     '0.9.24' ] ]
+32 verbose addNamed [ 'ripple-emulator', '0.9.24' ]
+33 verbose addNamed [ '0.9.24', '0.9.24' ]
+34 silly lockFile cff27c73-ripple-emulator-0-9-24 ripple-emulator@0.9.24
+35 verbose lock ripple-emulator@0.9.24 /home/alejandro/.npm/cff27c73-ripple-emulator-0-9-24.lock
+36 silly lockFile cff27c73-ripple-emulator-0-9-24 ripple-emulator@0.9.24
+37 silly lockFile cff27c73-ripple-emulator-0-9-24 ripple-emulator@0.9.24
+38 silly lockFile c6e72574-ripple-emulator ripple-emulator@
+39 silly lockFile c6e72574-ripple-emulator ripple-emulator@
+40 silly resolved [ { name: 'ripple-emulator',
+40 silly resolved     version: '0.9.24',
+40 silly resolved     description: 'A browser based html5 mobile application development and testing tool',
+40 silly resolved     homepage: 'http://ripple.incubator.apache.org/',
+40 silly resolved     author:
+40 silly resolved      { name: 'Apache Ripple Community',
+40 silly resolved        url: 'http://ripple.incubator.apache.org/' },
+40 silly resolved     licenses: [ [Object] ],
+40 silly resolved     repository:
+40 silly resolved      { type: 'git',
+40 silly resolved        url: 'https://git-wip-us.apache.org/repos/asf/incubator-ripple.git' },
+40 silly resolved     keywords:
+40 silly resolved      [ 'cordova',
+40 silly resolved        'phonegap',
+40 silly resolved        'ripple',
+40 silly resolved        'mobile',
+40 silly resolved        'testing',
+40 silly resolved        'test',
+40 silly resolved        'emulator' ],
+40 silly resolved     bin: { ripple: './bin/ripple' },
+40 silly resolved     main: './lib/index',
+40 silly resolved     dependencies:
+40 silly resolved      { express: '3.1.0',
+40 silly resolved        'connect-xcors': '0.5.2',
+40 silly resolved        request: '2.12.0',
+40 silly resolved        colors: '0.6.0-1',
+40 silly resolved        moment: '1.x.x',
+40 silly resolved        accounting: '0.x.x',
+40 silly resolved        open: '0.0.3' },
+40 silly resolved     devDependencies:
+40 silly resolved      { connect: '2.3.6',
+40 silly resolved        jsdom: '0.6.x',
+40 silly resolved        cssmin: '0.3.1',
+40 silly resolved        'html-minifier': '0.4.5',
+40 silly resolved        jWorkflow: '0.x.x',
+40 silly resolved        xmlhttprequest: '1.4.2',
+40 silly resolved        coverjs: '0.0.14',
+40 silly resolved        bower: '0.9.x' },
+40 silly resolved     files:
+40 silly resolved      [ 'README.md',
+40 silly resolved        'LICENSE',
+40 silly resolved        'lib/index.js',
+40 silly resolved        'lib/server',
+40 silly resolved        'lib/cli',
+40 silly resolved        'assets/server',
+40 silly resolved        'pkg/hosted',
+40 silly resolved        'doc',
+40 silly resolved        'bin' ],
+40 silly resolved     engines: { node: '>= 0.8.0', npm: '>= 1.1.0' },
+40 silly resolved     gitHead: 'cd50e49326141af4ae36b513bc34daf7903416ed',
+40 silly resolved     _id: 'ripple-emulator@0.9.24',
+40 silly resolved     scripts: {},
+40 silly resolved     _shasum: '2856a133ba54baffbde52ce36e27b9aed1b225cf',
+40 silly resolved     _from: 'ripple-emulator@',
+40 silly resolved     _npmVersion: '1.4.26',
+40 silly resolved     _npmUser: { name: 'brentlintner', email: 'brent.lintner@gmail.com' },
+40 silly resolved     maintainers: [ [Object], [Object], [Object], [Object], [Object] ],
+40 silly resolved     dist:
+40 silly resolved      { shasum: '2856a133ba54baffbde52ce36e27b9aed1b225cf',
+40 silly resolved        tarball: 'http://registry.npmjs.org/ripple-emulator/-/ripple-emulator-0.9.24.tgz' },
+40 silly resolved     directories: {},
+40 silly resolved     _resolved: 'https://registry.npmjs.org/ripple-emulator/-/ripple-emulator-0.9.24.tgz',
+40 silly resolved     readme: 'ERROR: No README data found!' } ]
+41 info install ripple-emulator@0.9.24 into /usr/lib
+42 info installOne ripple-emulator@0.9.24
+43 verbose lib/node_modules/ripple-emulator unbuild
+44 verbose tar unpack /home/alejandro/.npm/ripple-emulator/0.9.24/package.tgz
+45 silly lockFile 426fdece-lib-node-modules-ripple-emulator tar:///usr/lib/node_modules/ripple-emulator
+46 verbose lock tar:///usr/lib/node_modules/ripple-emulator /home/alejandro/.npm/426fdece-lib-node-modules-ripple-emulator.lock
+47 silly lockFile 9ab87117-pple-emulator-0-9-24-package-tgz tar:///home/alejandro/.npm/ripple-emulator/0.9.24/package.tgz
+48 verbose lock tar:///home/alejandro/.npm/ripple-emulator/0.9.24/package.tgz /home/alejandro/.npm/9ab87117-pple-emulator-0-9-24-package-tgz.lock
+49 silly gunzTarPerm modes [ '775', '664' ]
+50 error Error: EACCES, mkdir '/usr/lib/node_modules/ripple-emulator'
+50 error  { [Error: EACCES, mkdir '/usr/lib/node_modules/ripple-emulator']
+50 error   errno: 3,
+50 error   code: 'EACCES',
+50 error   path: '/usr/lib/node_modules/ripple-emulator',
+50 error   fstream_type: 'Directory',
+50 error   fstream_path: '/usr/lib/node_modules/ripple-emulator',
+50 error   fstream_class: 'DirWriter',
+50 error   fstream_stack:
+50 error    [ '/usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+50 error      '/usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+50 error      'Object.oncomplete (fs.js:107:15)' ] }
+51 error Please try running this command again as root/Administrator.
+52 error System Linux 3.13.0-32-generic
+53 error command "/usr/bin/node" "/usr/bin/npm" "install" "-g" "ripple-emulator"
+54 error cwd /media/Documentos_compartidos/xUbuntu/Documents/EAFIT/7 Semestre/Tópicos Especiales en Ingeniería de Software/nower
+55 error node -v v0.10.33
+56 error npm -v 1.4.28
+57 error path /usr/lib/node_modules/ripple-emulator
+58 error fstream_path /usr/lib/node_modules/ripple-emulator
+59 error fstream_type Directory
+60 error fstream_class DirWriter
+61 error code EACCES
+62 error errno 3
+63 error stack Error: EACCES, mkdir '/usr/lib/node_modules/ripple-emulator'
+64 error fstream_stack /usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+64 error fstream_stack /usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+64 error fstream_stack Object.oncomplete (fs.js:107:15)
+65 verbose exit [ 3, true ]
