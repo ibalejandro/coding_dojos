@@ -222,9 +222,10 @@ function PromoService($http) {
     sendPromo: function(promo){
       return $http({
         method: "POST",
-        url: "http://castofo.tk/sales.json",
-        data: promo
-      }).then(function(result) {
+        url: "http://castofo.tk/sales.json"
+        //data: promo
+        //data: {"user":{"email":email,"password":password}}
+      }, promo).then(function(result) {
         alert(result.data);
         return result.data;
       });
@@ -241,4 +242,3 @@ function PromoService($http) {
     });
   };
 }*/
-
