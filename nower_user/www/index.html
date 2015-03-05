@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="starter">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Map</title>
+        <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="lib/ionic/js/ionic.bundle.js"></script>
+        <!--<script src="cordova.js"></script>-->
+        <script src="js/app.js"></script>
+    </head>
+    <body>
+        <ion-pane>
+            <ion-header-bar class="bar-balanced"  ng-controller="MapRefresher">
+                <h1 class="title">Nower</h1>
+                <button class="button" data-ng-click="refreshPromos()"> 
+                  <i class="icon ion-refresh"></i>
+                </button>
+            </ion-header-bar>
+            <ion-content ng-controller="MapController">
+              <div id="map" data-tap-disabled="true"></div>
+            </ion-content>
+        </ion-pane>
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAlxGEGbf6uA2A-iUMInAKwtTrwrsqVq4o"></script>
+    </body>
+</html>
