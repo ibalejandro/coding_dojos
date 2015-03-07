@@ -1,97 +1,161 @@
 var App = angular.module("App", ["ionic"]);
 
-
-/*App.service("Nower", ["$http", "$log", Nower]);*/
-
 App.service("SharedVars", [SharedVars]);
 
-App.service("PromoService", ['$http', PromoService]);
+App.service("PromoService", ["$http", PromoService]);
 
 App.controller("MapCtrl", ["$scope", "$compile", "SharedVars", MapCtrl]);
 
-App.controller("AppCtrl", ["$scope", "$log", "SharedVars", "PromoService", AppCtrl]);
+App.controller("AppCtrl", ["$scope", "$window", "SharedVars",
+                           "PromoService", AppCtrl]);
 
 /*
-* Controllers
-*/
+ * Controladores
+ */
+
+/*
+ * Se inyecta: $scope - para variables globales.
+ *             $compile - para compilar el contenido del infowindows.
+ *             SharedVars - para la latitud y longitud compartida con servicio.
+ */
 function MapCtrl ($scope, $compile, SharedVars) {
+  //El método addDomListener() enlaza con el objeto window del navegador
+  //y permite que el API de Google Maps se comunique con los objetos que están
+  //fuera del dominio normal del API.
   google.maps.event.addDomListener(window, 'load', function() {
+    //Se definen una latitud y longitud por defecto, haciendo referencia a
+    //la Universidad EAFIT.
     var defLat = 6.200168;
     var defLng = -75.578862;
     var myLatlng = new google.maps.LatLng(defLat, defLng);
 
     var mapOptions = {
       center: myLatlng,
-      zoom: 18,
+      zoom: 15,
       mapTypeId: google.maps.MapTypeId.HYBRID
     };
 
+    //Se crea el mapa y se carga en el div 'map' especificado en el archivo
+    //HTML.
     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+    //Se almacena el mapa en el scope global, para ser accedido en diferentes
+    //funciones sin perder su referencia.
     $scope.map = map;
+
+    //Se almacena en el servicio de variables compartidas la latitud y la
+    //longitud que se establecen por defecto.
     SharedVars.setLat(defLat);
     SharedVars.setLng(defLng);
   });
 
+  //Con geolocalización, se intenta acceder a la posición actual del usuario.
   navigator.geolocation.getCurrentPosition(function(pos) {
+    //Si se pudo recuperar la información de la posición satisfactoriamente,
+    //se recupera el mapa de las variables globales para ser usado.
     var map = $scope.map;
+
+    //En el servicio de variables compartidas, se almacenan los valores
+    //obetenidos de latitud y longitud, además, se centra el mapa en dichas
+    //coordenadas.
     SharedVars.setLat(pos.coords.latitude);
     SharedVars.setLng(pos.coords.longitude);
-    map.setCenter(new google.maps.LatLng(SharedVars.getLat(), SharedVars.getLng()));
+    map.setCenter(new google.maps.LatLng(SharedVars.getLat(),
+                                         SharedVars.getLng()));
 
-    var contentString = "<div><a ng-click='clickTest()'>Your promo goes here</a></div>";
+    //Se construye un HTML con el contenido deseado para el InfoWindow y se
+    //compila para ser asignado a un marcador.
+    var contentString = "<div>Your promo goes here</div>";
     var compiled = $compile(contentString)($scope);
 
-    var myLocation = createMarker(compiled, map, SharedVars.getLat(), SharedVars.getLng());
+    //Se crea un marcador con la función createMarker.
+    var myLocation = createMarker(compiled, map,
+                                  SharedVars.getLat(),
+                                  SharedVars.getLng());
 
   }, function(error) {
+    //Si no fue posible obtener la localización del usuario se enseña un mensaje
+    //con el error.
     alert('Unable to get location: ' + error.message);
     var map = $scope.map;
-    map.setCenter(new google.maps.LatLng(SharedVars.getLat(), SharedVars.getLng()));
 
-    var contentString = "<div><a ng-click='clickTest()'>Draw the marker to your location</a></div>";
+    //En el servicio de variables compartidas, se almacenan los valores
+    //obetenidos de latitud y longitud, además, se centra el mapa en dichas
+    //coordenadas.
+    map.setCenter(new google.maps.LatLng(SharedVars.getLat(),
+                                         SharedVars.getLng()));
+
+    //Se construye un HTML con el contenido deseado para el InfoWindow indicando
+    //que debe ser arrastrado para indicar la localización del usuario y lugar
+    //donde será visualizada la promoción.
+    var contentString = "<div>Drag the marker to your location</a></div>";
     var compiled = $compile(contentString)($scope);
 
-    var myLocation = createMarker(compiled, map, SharedVars.getLat(), SharedVars.getLng());
+    //Se crea un marcador con la función createMarker.
+    var myLocation = createMarker(compiled, map,
+                                  SharedVars.getLat(),
+                                  SharedVars.getLng());
   }, {enableHighAccuracy: true}
   );
 
+  /*
+   * Se recibe: compiled - el mensaje en HTML compilado del InfoWindow.
+   *            map - mapa para dibujar el marcador.
+   *            lat - latitud del marcador.
+   *            lng - longitud del marcador.
+   */
   function createMarker(compiled, map, lat, lng) {
-    var pinImage = new google.maps.MarkerImage("http://maps.google.com/mapfiles/ms/icons/yellow-dot.png");
+    //Se selecciona un ícono amarillo para el marcador, se toma del sitio
+    //oficial de Google Maps.
+    var pinImage = new google.maps
+      .MarkerImage("http://maps.google.com/mapfiles/ms/icons/yellow-dot.png");
+
+    //Se crea el marcador con las características especificadas.
     var marker = new google.maps.Marker({
-      position: new google.maps.LatLng(SharedVars.getLat(), SharedVars.getLng()),
+      position: new google.maps.LatLng(SharedVars.getLat(),
+                                SharedVars.getLng()),
       map: map,
       icon: pinImage,
       title: "My Location",
-      draggable: true,
+      draggable: true, //El marcador puede ser arrastrable.
       animation: google.maps.Animation.DROP
     });
 
+    //Se crea el InfoWindow con el compilado HTML.
     var infowindow = new google.maps.InfoWindow({
       content: compiled[0]
     });
 
+    //Se adiciona un 'listener' para el clic del marcador, el cual abrirá
+    //el InfoWindow al ser presionado.
     google.maps.event.addListener(marker, 'click', function() {
-      if (marker.getAnimation() != null) marker.setAnimation(null);
-      else marker.setAnimation(google.maps.Animation.BOUNCE);
       infowindow.open(map, marker);
     });
 
+    //Se adiciona un evento para almacenar las nuevas coordenadas del marcador
+    //una vez este haya sido terminado de arrastrar.
     google.maps.event.addListener(marker, 'dragend', function(evt) {
       SharedVars.setLat(evt.latLng.lat());
       SharedVars.setLng(evt.latLng.lng());
-      console.log("lat: " + SharedVars.getLat() + " lng: " + SharedVars.getLng());
     });
     return marker;
   }
 }
 
-function AppCtrl($scope, $log, SharedVars, PromoService) {
-  /*$scope.posts = [];
-  $scope.refresh = function() {
-    Nower.getBlogs($scope);
-  }*/
+/*
+ * Se inyecta: $scope - para variables globales.
+ *             $window - para poder recargar la vista (se tiene la ventana)
+ *             SharedVars - para la latitud y longitud compartida con servicio.
+ *             PromoService - gestiona el servicio para publicar la promoción.
+ */
+function AppCtrl($scope, $window, SharedVars, PromoService) {
+  //Se obtiene un objeto con la fecha actual.
   var date = new Date();
+
+  //A continuación, se crean los objetos, variables, nombres y valores que
+  //hacen referencia a la fecha de vencimiento de la promoción. Se crea campo
+  //por campo con el fin de lograr facilidad a la hora de recuperar la
+  //información del formulario.
   $scope.years = [];
   $scope.years.push({'name': date.getFullYear(),
                      'value':date.getFullYear()});
@@ -99,6 +163,7 @@ function AppCtrl($scope, $log, SharedVars, PromoService) {
                      'value':date.getFullYear() + 1});
   $scope.year = $scope.years[0];
 
+  //Se guardan los nombres de los meses.
   var monthNames = ["January", "February", "March", "April", "May", "June",
           "July", "August", "September", "October", "November", "December" ];
   $scope.months = [];
@@ -116,6 +181,9 @@ function AppCtrl($scope, $log, SharedVars, PromoService) {
   $scope.day = $scope.days[date.getDay()];
 
   $scope.hours = [];
+  //Se obtiene la diferencia entre el tiempo Universal (UTC) y el local, para
+  //luego hacer un mapeo de la hora mostrada al usuario y la hora enviada
+  //al servidor (Se quiere tener siempre la hora UTC en el servidor).
   var offset = date.getTimezoneOffset() / 60;
   for (var i = 0; i <= 23; ++i) {
     var utcHour = (24 + i + offset) % 24;
@@ -131,72 +199,73 @@ function AppCtrl($scope, $log, SharedVars, PromoService) {
   }
   $scope.minute = $scope.minutes[date.getMinutes()];
 
-
+  //Esta función es llamada al presionar el botón 'Send promo' desde la vista.
+  //En 'promo' se tiene toda la información del formulario.
+  //Se asume que el objeto promo está completo puesto que el formulario tiene
+  //los campos obligatorios.
   $scope.createPromo = function(promo) {
+    //Se recupera el título de la promoción y se codifica en formato URI.
+    var title = encodeURI(promo.title);
+    title = title.replace('/', '%2F');
+
+    //Se recupera la descripción de la promoción y se codifica en formato URI.
+    var description = encodeURI(promo.description);
+    description = description.replace('/', '%2F');
+
+    //Se recupera la latitud y longitud del servicio de variables compartidas,
+    //se convierten a string y luego se reemplazan los punto por comas,
+    //con el fin de no tener problemas con la URL.
+    var latitude = SharedVars.getLat();
+    latitude = latitude.toString().replace('.',',');
+    var longitude = SharedVars.getLng();
+    longitude = longitude.toString().replace('.',',');
+
+    //Se construye la fecha de vencimiento a partir de los selects.
     var date = $scope.year.value + "-" +
                $scope.month.value + "-" +
                $scope.day.value;
     var time = $scope.hour.value + ":" +
                $scope.minute.value + ":00";
+    var expiration_date = encodeURI(date + " " + time);
+    expiration_date = expiration_date.replace('/', '%2F');
+
+    //Se recupera el valor de personas límite.
+    var people_limit = promo.people_limit;
+
+    //Se construye un JSON con las variables recuperadas.
     var jsonPromo = {
-      "title": promo.title ? promo.title : null,
-      "description": promo.description ? promo.description : null,
-      "latitude": SharedVars.getLat(),
-      "longitude": SharedVars.getLng(),
-      "expiration_date": date + " " + time,
-      "people_limit": promo.people_limit
-    };
+      "title": title,
+      "description": description,
+      "latitude": latitude,
+      "longitude": longitude,
+      "expiration_date": expiration_date,
+      "people_limit": people_limit
+    }
     var sale = {
       "sale": jsonPromo
     }
-    console.log(JSON.stringify(sale));
-    alert(JSON.stringify(sale));
 
-    PromoService.sendPromo(sale);
-    /*var xhr = createCORSRequest('POST', 'http://localhost:3000/sales.json');
-    if (!xhr) {
-      alert("CORS not supported");
-      return;
-    }
-
-    xhr.onload = function() {
-      var responseText = xhr.responseText;
-      console.log(responseText);
-      alert("Sí dio");
-    };
-
-    xhr.onerror = function() {
-      console.log('There was an error!');
-      alert("No dio");
-    };
-
-    xhr.withCredentials = true;
-    xhr.send(JSON.stringify(sale));*/
-    /*$http({
-      method:"POST",
-      url: "http://fashionadvisor.herokuapp.com/users/sign_in",
-      data: {"user":{"email":"pera@pene.com", "password":"12345678"}}
-    }).
-    then(function(result) {
-      alert(result.data);
-    });*/
+    //Se utiliza el mecanismo de Promise para llamar al método y esperar la
+    //respuesta de este para poder avanzar.
+    var sendPromoPromise = PromoService.sendPromo(sale);
+    sendPromoPromise.then(function(result) {
+      if(result.success == true) { //Promoción publicada exitosamente.
+        alert("Promo published successfully");
+        $window.location.reload();
+      }
+      else { //Fracaso al publicar promoción.
+        alert("Unable to publish the promo");
+      }
+    });
   };
-
-  function createCORSRequest(method, url) {
-    var xhr = new XMLHttpRequest();
-    if ("withCredentials" in xhr) xhr.open(method, url, true);
-    else if (typeof XDomainRequest != "undefined") {
-      xhr = new XDomainRequest();
-      xhr.open(method, url);
-    }
-    else xhr = null;
-    return xhr;
-  }
 }
 
 /*
-* Services
+* Servicios
 */
+
+//Este servicio almacena los valores de latitud y longitud registradas por
+//el marcador del mapa.
 function SharedVars() {
   var lat;
   var lng;
@@ -217,28 +286,32 @@ function SharedVars() {
   };
 }
 
+//Servicio para gestionar la publicación de una nueva promoción
 function PromoService($http) {
   return {
-    sendPromo: function(promo){
-      return $http({
-        method: "POST",
-        url: "http://castofo.tk/sales.json",
-        data: promo
-      }).then(function(result) {
-        alert(result.data);
-        return result.data;
+    sendPromo: function(promo) {
+      //Se construye la URL a manera de GET debido a grandes problemas con
+      //CORS (Cross Origin Resource Sharing) que no pudieron ser resueltos y
+      //que impidieron el uso del método POST.
+      url = "http://castofo.tk/sales/";
+      url += promo.sale.title + '/';
+      url += promo.sale.description + '/';
+      url += promo.sale.latitude + '/';
+      url += promo.sale.longitude + '/';
+      url += promo.sale.expiration_date + '/';
+      url += promo.sale.people_limit;
+      return $.get(url, function(response) {
+        console.log(JSON.stringify(response));
+        //Se responde de acuerdo a lo que el servidor retorna.
+        var data = {success: response.success};
+        return data;
+      })
+      .fail(function(xhr, text, exception) {
+        console.log(xhr.responseText);
+        //Se tuvieron problemas con el método.
+        var data = {success: false};
+        return data;
       });
     }
   };
 }
-
-/*function Nower($http, $log) {
-  this.getBlogs = function($scope) {
-    $http.jsonp("https://public-api.wordpress.com/rest/v1/freshly-pressed?callback=JSON_CALLBACK")
-      .success(function(result) {
-        $scope.posts = result.posts;
-        $scope.$broadcast("scroll.refreshComplete");
-    });
-  };
-}*/
-
