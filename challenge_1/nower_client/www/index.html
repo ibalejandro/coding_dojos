@@ -2,7 +2,8 @@
 <html data-ng-app="App">
   <head>
     <meta charset="utf-8">
-    <!--<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">-->
+    <!--<meta name="viewport" content="initial-scale=1, maximum-scale=1,
+         user-scalable=no, width=device-width">-->
     <title>Nower</title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -13,7 +14,9 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
-    
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+
     <!-- Scripts para el mapa y jQuery -->
     <script src="http://maps.googleapis.com/maps/api/js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -30,27 +33,38 @@
       <hr>
       <div class="list">
         <label class="item item-input item stacked label">
-          <span class="input-label"><font color=#0C63EE>Preview your location</font></span>
+          <span class="input-label">
+            <font color=#0C63EE>Preview your location</font>
+          </span>
         </label>
       </div>
       <!-- Acá se mostrará el pequeño mapa para determinar la localización y
            las coordenadas de la publicación -->
-      <div id="map" data-tap-disabled="true" ng-controller="MapCtrl" align="center"></div>
+      <div id="map" data-tap-disabled="true"
+                    ng-controller="MapCtrl" align="center"></div>
       <br />
       <!-- Este formulario al ser enviado llamará la función createPromo y le
            enviará un objeto 'promo' con los campos llenados -->
       <form ng-submit="createPromo(promo)" ng-controller="AppCtrl">
         <div class="list">
           <label class="item item-input item-stacked-label">
-            <span class="input-label"><font color=#0C63EE>Promo title</font></span>
-            <input type="text" placeholder="Promo title" ng-model="promo.title" required>
+            <span class="input-label">
+              <font color=#0C63EE>Promo title</font>
+            </span>
+            <input type="text" placeholder="Promo title"
+                   ng-model="promo.title" required>
           </label>
           <label class="item item-input item-stacked-label">
-            <span class="input-label"><font color=#0C63EE>Description</font></span>
-            <textarea rows="5" maxlength="300" placeholder="Description" ng-model="promo.description" required></textarea>
+            <span class="input-label">
+              <font color=#0C63EE>Description</font>
+            </span>
+            <textarea rows="5" maxlength="300" placeholder="Description"
+                      ng-model="promo.description" required></textarea>
           </label>
           <label class="item item-input item-stacked-label">
-            <span class="input-label"><font color=#0C63EE>Expiration date</font></span>
+            <span class="input-label">
+              <font color=#0C63EE>Expiration date</font>
+            </span>
             <!-- Gracias a las tablas se puede dar una ubicación correcta a los
                  selects que indican la fecha de vencimiento de la promoción-->
             <table width="100%">
@@ -60,20 +74,35 @@
                     <tr>
                       <!-- Para cada objeto 'year' de 'years' se toma el nombre
                            y se pinta como una opción del select -->
-                      <td><select ng-model="year" ng-options="year.name for year in years"></select></td>
+                      <td><select ng-model="year"
+                                  ng-options="year.name for year in years">
+                          </select>
+                      </td>
                       <td>&nbsp;</td>
-                      <td><select ng-model="month" ng-options="month.name for month in months"></select></td>
+                      <td><select ng-model="month"
+                                  ng-options="month.name for month in months">
+                          </select>
+                      </td>
                       <td>&nbsp;</td>
-                      <td><select ng-model="day" ng-options="day.name for day in days"></select></td>
+                      <td><select ng-model="day"
+                                  ng-options="day.name for day in days">
+                          </select>
+                      </td>
                     </tr>
                   </table>
                 </td>
                 <td>
                   <table width="40%">
                     <tr>
-                      <td><select ng-model="hour" ng-options="hour.name for hour in hours"></select></td>
+                      <td><select ng-model="hour"
+                                  ng-options="hour.name for hour in hours">
+                          </select>
+                      </td>
                       <td>&nbsp;:&nbsp;</td>
-                      <td><select ng-model="minute" ng-options="minute.name for minute in minutes"></select></td>
+                      <td><select ng-model="minute"
+                                ng-options="minute.name for minute in minutes">
+                          </select>
+                      </td>
                     </tr>
                   </table>
                 </td>
@@ -81,8 +110,11 @@
             </table>
           </label>
           <label class="item item-input item-stacked-label">
-            <span class="input-label"><font color=#0C63EE>People limit</font></span>
-            <input id="limit" type="number" ng-model="promo.people_limit" required>
+            <span class="input-label">
+              <font color=#0C63EE>People limit</font>
+            </span>
+            <input id="limit" type="number"
+                   ng-model="promo.people_limit" required>
           </label>
         </div>
         <!-- Botón para enviar el formulario -->
