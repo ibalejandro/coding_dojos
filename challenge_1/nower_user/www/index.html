@@ -1,27 +1,38 @@
 <!DOCTYPE html>
+<!--Se usa para asignar el elemento raíz de la aplicación-->
 <html ng-app="starter">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <title>Map</title>
-        <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <script src="lib/ionic/js/ionic.bundle.js"></script>
-        <!--<script src="cordova.js"></script>-->
-        <script src="js/app.js"></script>
-    </head>
-    <body>
-        <ion-pane>
-            <ion-header-bar class="bar-balanced"  ng-controller="MapRefresher">
-                <h1 class="title">Nower</h1>
-                <button class="button" data-ng-click="refreshPromos()"> 
-                  <i class="icon ion-refresh"></i>
-                </button>
-            </ion-header-bar>
-            <ion-content ng-controller="MapController">
-              <div id="map" data-tap-disabled="true"></div>
-            </ion-content>
-        </ion-pane>
-        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAlxGEGbf6uA2A-iUMInAKwtTrwrsqVq4o"></script>
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, 
+    user-scalable=no, width=device-width">
+    <title>Nower</title>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+  </head>
+  <body>
+    <ion-pane>
+      <!--Se agrega una barra superior a la aplicación y se asocia esta vista 
+      al controlador MapRefresher-->
+      <!--MapRefresher estará encargado de actualizar las promociones visibles 
+      para el usuario-->
+      <ion-header-bar class="bar-balanced"  ng-controller="MapRefresher">
+        <h1 class="title">Nower</h1>
+        <button class="button" data-ng-click="refreshPromos()"> 
+          <i class="icon ion-refresh"></i>
+        </button>
+      </ion-header-bar>
+      <!--MapController estará encargado de configurar el mapa al inicio 
+      centrándolo en la localización actual del usuario-->
+      <ion-content ng-controller="MapController">
+        <div id="map" data-tap-disabled="true"></div>
+      </ion-content>
+    </ion-pane>
+    <!--Se agrega el script para poder utilizar el API de Google Maps-->
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAlxGEGbf6uA2A
+    -iUMInAKwtTrwrsqVq4o"></script>
+  </body>
 </html>
