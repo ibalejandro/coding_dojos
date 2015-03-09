@@ -19,4 +19,4 @@ The second one is, as a user, being able to visualize and pick a promo related t
 
 This first challenge was developed using hybrid mobile applications. In this case, we picked the [Ionic framework] so that both client and user applications can be deployed for *Android* and *iOS* platforms.
 
-[Ionic framework]:ionicframework.com
+[Ionic framework]:http://ionicframework.com/
