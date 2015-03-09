@@ -137,8 +137,10 @@ angular.module("App.controllers", [])
 *             SharedVars - para la latitud y longitud compartida con servicio.
 *             PromoService - gestiona el servicio para publicar la promoción.
 */
-.controller('AppCtrl', ['$scope', '$window', 'SharedVars', 'PromoService',
-                        function ($scope, $window, SharedVars, PromoService) {
+.controller('AppCtrl', ['$scope', '$window', '$ionicPopup', 'SharedVars',
+                        'PromoService',
+                        function ($scope, $window, $ionicPopup, SharedVars,
+                                  PromoService) {
   //Se obtiene un objeto con la fecha actual.
   var date = new Date();
 
@@ -242,12 +244,21 @@ angular.module("App.controllers", [])
     var sendPromoPromise = PromoService.sendPromo(sale);
     sendPromoPromise.then(function(result) {
       if(result.success == true) { //Promoción publicada exitosamente.
-        alert("Promo published successfully");
-        $window.location.reload();
+        showMessage("", "Promo published successfully", true);
       }
       else { //Fracaso al publicar promoción.
-        alert("Unable to publish the promo");
+        showMessage("", "Unable to publish the promo", false);
       }
     });
   };
+
+  function showMessage(title, content, reload) {
+    var alertPopup = $ionicPopup.alert({
+      title: title,
+      template: ("<center><font size=4>" + content + "</font></center>")
+    });
+    alertPopup.then(function(res) {
+      if (reload) $window.location.reload();
+    });
+  }
 }]);
