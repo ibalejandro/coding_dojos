@@ -25,7 +25,7 @@ $ ionic emulate android
 ```
  - Make the same procedure with the *nower_user* application.
 
-After done, both applications would be installed in your device, so you can user Nower. First, publish a new promo in the *Nower client* application, then go to the user one (*Nower*) and tap the update button located in the upper right corner, all the existing promos will be marked. Tap any promo to see it's content, then tape *Now* to accept it and get a code.
+Having done this, both applications would be installed in your device, so you can use Nower. First, publish a new promo in the *Nower client* application, then go to the user one (*Nower*) and tap the update button located in the upper right corner, all the existing promos will be marked. Tap any promo to see it's content, then tape *Now* to accept it and get a code.
 
 ###Screenshots
 * Publishing a promo.
@@ -44,6 +44,6 @@ After done, both applications would be installed in your device, so you can user
 
 ![alt img](https://raw.githubusercontent.com/ibalejandro/coding_dojos/03a704e5cdf8c2d0e1c4447456172c2e7e65d667/challenge_1/screenshots/promo_code.jpg)
 
-[this tutorial]:http://ionicframework.com/getting-started/
+[this tutorial]:http://ionicframework.com/docs/guide/installation.html
 [Ionic framework]:http://ionicframework.com/
 
