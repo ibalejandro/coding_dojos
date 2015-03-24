@@ -6,18 +6,18 @@ import co.edu.eafit.conferre.data.base.TransferObject;
 
 public class EventTO implements TransferObject {
   
-  private int id;
+  private String id;
   private String name;
   private String type;
   private String description;
   private Date date;
   private int availableSeats;
-  private int conferenceId;
+  private String conferenceId;
   
-  public int getId() {
+  public String getId() {
     return id;
   }
-  public void setId(int id) {
+  public void setId(String id) {
     this.id = id;
   }
   public String getName() {
@@ -50,10 +50,10 @@ public class EventTO implements TransferObject {
   public void setAvailableSeats(int availableSeats) {
     this.availableSeats = availableSeats;
   }
-  public int getConferenceId() {
+  public String getConferenceId() {
     return conferenceId;
   }
-  public void setConferenceId(int conferenceId) {
+  public void setConferenceId(String conferenceId) {
     this.conferenceId = conferenceId;
   }
 }

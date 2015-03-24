@@ -4,17 +4,17 @@ import co.edu.eafit.conferre.data.base.TransferObject;
 
 public class SeatTO implements TransferObject {
   
-  private int id;
+  private String id;
   private int number;
   private String type;
   private boolean available;
-  private int spaceId;
-  private int assistantId;
+  private String spaceId;
+  private String assistantId;
   
-  public int getId() {
+  public String getId() {
     return id;
   }
-  public void setId(int id) {
+  public void setId(String id) {
     this.id = id;
   }
   public int getNumber() {
@@ -35,16 +35,16 @@ public class SeatTO implements TransferObject {
   public void setAvailable(boolean available) {
     this.available = available;
   }
-  public int getSpaceId() {
+  public String getSpaceId() {
     return spaceId;
   }
-  public void setSpaceId(int spaceId) {
+  public void setSpaceId(String spaceId) {
     this.spaceId = spaceId;
   }
-  public int getAssistantId() {
+  public String getAssistantId() {
     return assistantId;
   }
-  public void setAssistantId(int assistantId) {
+  public void setAssistantId(String assistantId) {
     this.assistantId = assistantId;
   }
 }

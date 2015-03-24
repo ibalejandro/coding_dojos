@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import co.edu.eafit.conferre.data.base.GenericDAO;
 import co.edu.eafit.conferre.data.base.TransferObject;
@@ -25,13 +26,18 @@ public class RenterDAO implements GenericDAO {
     try {
       renter = (RenterTO) newObject;
       PreparedStatement prep = conn
-          .prepareStatement("INSERT INTO renters VALUES(?, ?, ?, ?, ?)");
-      prep.setString(1, renter.getName());
-      prep.setString(2, renter.getIdentification());
-      prep.setString(3, renter.getPhoneNumber());
-      prep.setString(4, renter.getEmail());
-      prep.setBoolean(5, renter.isMale());
-      prep.executeUpdate();
+          .prepareStatement("INSERT INTO renters VALUES(?, ?, ?, ?, ?, ?, ?)");
+      prep.setString(2, renter.getName());
+      prep.setString(3, renter.getIdentification());
+      prep.setString(4, renter.getPhoneNumber());
+      prep.setString(5, renter.getEmail());
+      prep.setString(6, renter.getPassword());
+      prep.setBoolean(7, renter.isMale());
+      do {
+        UUID id = UUID.randomUUID();
+        renter.setId(id.toString());
+        prep.setString(1, renter.getId());
+      } while (prep.executeUpdate() == 0);
     }
     catch (SQLException e) {
       e.printStackTrace();
@@ -85,8 +91,9 @@ public class RenterDAO implements GenericDAO {
       prep.setString(1, renter.getName());
       prep.setString(2, renter.getIdentification());
       prep.setString(3, renter.getPhoneNumber());
-      prep.setString(5,  renter.getEmail());
-      prep.setBoolean(6, renter.isMale());
+      prep.setString(4,  renter.getEmail());
+      prep.setBoolean(5, renter.isMale());
+      prep.setString(6, renter.getId());
       response = prep.executeUpdate();
     }
     catch (SQLException e) {
@@ -103,7 +110,7 @@ public class RenterDAO implements GenericDAO {
       renter = (RenterTO) params;
       PreparedStatement prep = conn
           .prepareStatement("DELETE FROM renters WHERE id = ?");
-      prep.setInt(1, renter.getId());
+      prep.setString(1, renter.getId());
       response = prep.executeUpdate();
     }
     catch (SQLException e) {

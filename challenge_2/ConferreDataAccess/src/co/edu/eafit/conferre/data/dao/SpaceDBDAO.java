@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import co.edu.eafit.conferre.data.base.TransferObject;
 import co.edu.eafit.conferre.data.to.SpaceTO;
@@ -24,11 +25,16 @@ public class SpaceDBDAO implements SpaceDAO {
     try {
       space = (SpaceTO) newObject;
       PreparedStatement prep = conn
-          .prepareStatement("INSERT INTO spaces VALUES(?, ?, ?)");
-      prep.setInt(1, space.getMaxCapacity());
-      prep.setString(2, space.getLocation());
-      prep.setBoolean(3, space.isAvailable());
-      prep.executeUpdate();
+          .prepareStatement("INSERT INTO spaces VALUES(?, ?, ?, ?, ?)");
+      prep.setInt(2, space.getMaxCapacity());
+      prep.setString(3, space.getLocation());
+      prep.setBoolean(4, space.isAvailable());
+      prep.setString(5, space.getEventId());
+      do {
+        UUID id = UUID.randomUUID();
+        space.setId(id.toString());
+        prep.setString(1, space.getId());
+      } while (prep.executeUpdate() == 0);
     }
     catch (SQLException e) {
       e.printStackTrace();
@@ -45,16 +51,19 @@ public class SpaceDBDAO implements SpaceDAO {
       space = (SpaceTO) params;
       prep = conn
           .prepareStatement("SELECT * FROM spaces WHERE max_capacity = ?"
-                          + "AND location = ? AND available = ?");
+                          + "AND location = ? AND available = ? AND "
+                          + "event_id = ?");
       prep.setInt(1, space.getMaxCapacity());
       prep.setString(2, space.getLocation());
       prep.setBoolean(3, space.isAvailable());
+      prep.setString(4, space.getEventId());
       ResultSet resultSet = prep.executeQuery();
       while (resultSet.next()) {
         SpaceTO row = new SpaceTO();
         row.setMaxCapacity(resultSet.getInt("max_capacity"));
         row.setLocation(resultSet.getString("location"));
         row.setAvailable(resultSet.getBoolean("available"));
+        row.setEventId(resultSet.getString("event_id)"));
         result.add(row);
       }
     }
@@ -72,11 +81,12 @@ public class SpaceDBDAO implements SpaceDAO {
       space = (SpaceTO) object;
       PreparedStatement prep = conn
           .prepareStatement("UPDATE spaces SET max_capacity = ?, "
-              + "location = ?, available = ? WHERE id = ?");
-      prep.setInt(1, space.getMaxCapacity());
-      prep.setString(2, space.getLocation());
-      prep.setBoolean(3, space.isAvailable());
-      prep.setInt(4,  space.getId());
+              + "location = ?, available = ?, event_id = ? WHERE id = ?");
+      prep.setInt(2, space.getMaxCapacity());
+      prep.setString(3, space.getLocation());
+      prep.setBoolean(4, space.isAvailable());
+      prep.setString(5, space.getEventId());
+      prep.setString(1,  space.getId());
       response = prep.executeUpdate();
     }
     catch (SQLException e) {
@@ -93,7 +103,7 @@ public class SpaceDBDAO implements SpaceDAO {
       space = (SpaceTO) params;
       PreparedStatement prep = conn
           .prepareStatement("DELETE FROM spaces WHERE id = ?");
-      prep.setInt(1, space.getId());
+      prep.setString(1, space.getId());
       response = prep.executeUpdate();
     }
     catch (SQLException e) {

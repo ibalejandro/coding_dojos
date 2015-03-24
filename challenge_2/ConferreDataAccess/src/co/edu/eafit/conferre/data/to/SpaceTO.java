@@ -4,16 +4,16 @@ import co.edu.eafit.conferre.data.base.TransferObject;
 
 public class SpaceTO implements TransferObject {
   
-  private int id;
+  private String id;
   private int maxCapacity;
   private String location;
   private boolean available;
-  private int eventId;
+  private String eventId;
   
-  public int getId() {
+  public String getId() {
     return id;
   }
-  public void setId(int id) {
+  public void setId(String id) {
     this.id = id;
   }
   public int getSeatsCapacity() {
@@ -40,10 +40,10 @@ public class SpaceTO implements TransferObject {
   public void setAvailable(boolean available) {
     this.available = available;
   }
-  public int getEventId() {
+  public String getEventId() {
     return eventId;
   }
-  public void setEventId(int eventId) {
+  public void setEventId(String eventId) {
     this.eventId = eventId;
   }
 }

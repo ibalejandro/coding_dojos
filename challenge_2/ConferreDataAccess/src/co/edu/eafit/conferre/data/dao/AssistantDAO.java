@@ -91,8 +91,9 @@ public class AssistantDAO implements GenericDAO {
       prep.setString(1, assistant.getName());
       prep.setString(2, assistant.getIdentification());
       prep.setString(3, assistant.getPhoneNumber());
-      prep.setString(5,  assistant.getEmail());
-      prep.setBoolean(6, assistant.isMale());
+      prep.setString(4,  assistant.getEmail());
+      prep.setBoolean(5, assistant.isMale());
+      prep.setString(6, assistant.getId());
       response = prep.executeUpdate();
     }
     catch (SQLException e) {

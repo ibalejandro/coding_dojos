@@ -4,7 +4,9 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import co.edu.eafit.conferre.data.dao.AssistantDAO;
 import co.edu.eafit.conferre.data.dao.ConferenceDAO;
@@ -20,14 +22,21 @@ public class FactoryDAO {
   
   private static Connection conn = null;
   private static File file = null;
+  private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+  private static final String DB_URL = "jdbc:mysql://localhost/conferre";
+  
+  private static final String USER = "root";
+  private static final String PASS = "";
   
   private static void createConnection() {
-    Driver driver = null;
     try {
-      driver = DriverManager.getDriver("com.mysql.Driver");
-      conn = driver.connect("msyql://localhost:3693", null);
+      Class.forName("com.mysql.jdbc.Driver");
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
     }
     catch (SQLException e) {
+      e.printStackTrace();
+    }
+    catch (ClassNotFoundException e) {
       e.printStackTrace();
     }
   }

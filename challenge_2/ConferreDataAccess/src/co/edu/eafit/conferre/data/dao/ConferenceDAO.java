@@ -23,8 +23,6 @@ public class ConferenceDAO implements GenericDAO {
   
   @Override
   public TransferObject create(TransferObject newObject) {
-    // Podemos gener un UUID para guardarlo como id, y si ya existe (muy poco 
-    // probable) entonces volvemos a intentar insertarlo.
     ConferenceTO conference = null;
     try {
       conference = (ConferenceTO) newObject;
@@ -36,7 +34,7 @@ public class ConferenceDAO implements GenericDAO {
       Date date = new Date(conference.getDate().getTime());
       prep.setDate(5, date);
       prep.setInt(6,  conference.getAvailableSeats());
-      prep.setInt(7, conference.getRenterId());
+      prep.setString(7, conference.getRenterId());
       do {
         UUID id = UUID.randomUUID();
         conference.setId(id.toString());

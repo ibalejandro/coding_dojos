@@ -95,7 +95,7 @@ public class SpaceTXTDAO implements SpaceDAO {
       String line, output = "";
       while ((line = reader.readLine()) != null) {
         String [] column = line.split(";");
-        if (Integer.parseInt(column[0]) == space.getId()) {
+        if (column[0].toString().equals(space.getId())) {
           String newSpace;
           newSpace = space.getId() + ";"
                    + space.getMaxCapacity() + ";"
@@ -130,7 +130,7 @@ public class SpaceTXTDAO implements SpaceDAO {
       String line, output = "";
       while ((line = reader.readLine()) != null) {
         String [] column = line.split(";");
-        if (Integer.parseInt(column[0]) == space.getId()) continue;
+        if (column[0].toString().equals(space.getId())) continue;
         else output = output + line + "\n";
       }
       reader.close();

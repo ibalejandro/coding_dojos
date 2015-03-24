@@ -12,7 +12,7 @@ public class ConferenceTO implements TransferObject {
   private String type;
   private Date date;
   private int availableSeats;
-  private int renterId;
+  private String renterId;
 
   public String getId() {
     return id;
@@ -50,10 +50,10 @@ public class ConferenceTO implements TransferObject {
   public void setAvailableSeats(int availableSeats) {
     this.availableSeats = availableSeats;
   }
-  public int getRenterId() {
+  public String getRenterId() {
     return renterId;
   }
-  public void setRenterId(int renterId) {
+  public void setRenterId(String renterId) {
     this.renterId = renterId;
   }
 }
