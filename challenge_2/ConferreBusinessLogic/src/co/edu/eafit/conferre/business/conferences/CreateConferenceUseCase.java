@@ -1,5 +1,6 @@
-package co.edu.eafit.conferre.conferences.business;
+package co.edu.eafit.conferre.business.conferences;
 
+import co.edu.eafit.conferre.business.base.UnitOfWork;
 import co.edu.eafit.conferre.data.base.FactoryDAO;
 import co.edu.eafit.conferre.data.base.TransferObject;
 import co.edu.eafit.conferre.data.dao.ConferenceDAO;
@@ -14,14 +15,19 @@ public class CreateConferenceUseCase implements UnitOfWork {
     ConferenceTO conference = (ConferenceTO) params;
     validateConferenceData(conference);
     ConferenceDAO conferenceDAO = FactoryDAO.createConferenceDAO();
-    ConferenceTO result = (ConferenceTO) conferenceDAO.create(conference);
+    ConferenceTO result;
+    try {
+      result = (ConferenceTO) conferenceDAO.create(conference);
+    }
+    catch (Exception e) {
+      throw new UnitOfWorkException(e);
+    }
     return result;
   }
 
   private void validateConferenceData(ConferenceTO conference) throws ValidationException {
-    if (conference.getName() == null || conference.equals("")) {
+    if (conference.getName() == null || conference.getName().equals("")) {
       throw new ValidationException("Conferene name can't be blank");
     }
   }
-
 }

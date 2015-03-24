@@ -21,7 +21,7 @@ public class AssistantDAO implements GenericDAO {
   }
   
   @Override
-  public TransferObject create(TransferObject newObject) {
+  public TransferObject create(TransferObject newObject) throws Exception {
     AssistantTO assistant = null;
     try {
       assistant = (AssistantTO) newObject;
@@ -40,7 +40,7 @@ public class AssistantDAO implements GenericDAO {
       } while (prep.executeUpdate() == 0);
     }
     catch (SQLException e) {
-      e.printStackTrace();
+      throw new Exception(e);
     }
     return assistant;
   }

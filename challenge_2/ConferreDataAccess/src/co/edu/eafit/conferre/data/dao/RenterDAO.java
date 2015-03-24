@@ -21,7 +21,7 @@ public class RenterDAO implements GenericDAO {
   }
   
   @Override
-  public TransferObject create(TransferObject newObject) {
+  public TransferObject create(TransferObject newObject) throws Exception {
     RenterTO renter = null;
     try {
       renter = (RenterTO) newObject;
@@ -40,7 +40,7 @@ public class RenterDAO implements GenericDAO {
       } while (prep.executeUpdate() == 0);
     }
     catch (SQLException e) {
-      e.printStackTrace();
+      throw new Exception(e);
     }
     return renter;
   }

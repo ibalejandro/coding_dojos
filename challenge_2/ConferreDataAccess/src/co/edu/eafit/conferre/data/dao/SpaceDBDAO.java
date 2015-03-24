@@ -20,7 +20,7 @@ public class SpaceDBDAO implements SpaceDAO {
   }
   
   @Override
-  public TransferObject create(TransferObject newObject) {
+  public TransferObject create(TransferObject newObject) throws Exception {
     SpaceTO space = null;
     try {
       space = (SpaceTO) newObject;
@@ -37,7 +37,7 @@ public class SpaceDBDAO implements SpaceDAO {
       } while (prep.executeUpdate() == 0);
     }
     catch (SQLException e) {
-      e.printStackTrace();
+      throw new Exception(e);
     }
     return space;
   }

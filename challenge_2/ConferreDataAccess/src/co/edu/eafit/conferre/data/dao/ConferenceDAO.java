@@ -22,7 +22,7 @@ public class ConferenceDAO implements GenericDAO {
   }
   
   @Override
-  public TransferObject create(TransferObject newObject) {
+  public TransferObject create(TransferObject newObject) throws Exception {
     ConferenceTO conference = null;
     try {
       conference = (ConferenceTO) newObject;
@@ -42,7 +42,7 @@ public class ConferenceDAO implements GenericDAO {
       } while (prep.executeUpdate() == 0);
     }
     catch (SQLException e) {
-      e.printStackTrace();
+      throw new Exception(e);
     }
     return conference;
   }

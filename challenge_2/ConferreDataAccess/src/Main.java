@@ -14,7 +14,7 @@ public class Main {
     renter.setPassword("123");
     renter.setMale(true);
     RenterDAO renterDAO = FactoryDAO.createRenterDAO();
-    RenterTO result = (RenterTO) renterDAO.create(renter);
-    System.out.println("Created, id: " + result.getId());
+    //RenterTO result = (RenterTO) renterDAO.create(renter);
+    //System.out.println("Created, id: " + result.getId());
   }
 }

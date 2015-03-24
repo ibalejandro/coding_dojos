@@ -22,7 +22,7 @@ public class EventDAO implements GenericDAO {
   }
   
   @Override
-  public TransferObject create(TransferObject newObject) {
+  public TransferObject create(TransferObject newObject) throws Exception {
     EventTO event = null;
     try {
       event = (EventTO) newObject;
@@ -43,7 +43,7 @@ public class EventDAO implements GenericDAO {
       } while (prep.executeUpdate() == 0);
     }
     catch (SQLException e) {
-      e.printStackTrace();
+      throw new Exception(e);
     }
     return event;
   }
