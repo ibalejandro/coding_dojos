@@ -1,4 +1,4 @@
-package co.edu.eafit.conferre.business.event;
+package co.edu.eafit.conferre.business.events;
 
 import co.edu.eafit.conferre.business.base.UnitOfWork;
 import co.edu.eafit.conferre.data.base.FactoryDAO;

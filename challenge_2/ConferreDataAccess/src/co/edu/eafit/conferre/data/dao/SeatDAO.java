@@ -21,7 +21,7 @@ public class SeatDAO implements GenericDAO {
   }
   
   @Override
-  public TransferObject create(TransferObject newObject) {
+  public TransferObject create(TransferObject newObject) throws Exception {
     SeatTO seat = null;
     try {
       seat = (SeatTO) newObject;
@@ -39,7 +39,7 @@ public class SeatDAO implements GenericDAO {
       } while (prep.executeUpdate() == 0);
     }
     catch (SQLException e) {
-      e.printStackTrace();
+      throw new Exception(e);
     }
     return seat;
   }

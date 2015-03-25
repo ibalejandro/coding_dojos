@@ -1,12 +1,12 @@
 package co.edu.eafit.conferre.data.to;
 
-import java.util.List;
+import co.edu.eafit.conferre.data.base.TransferObject;
 
-public class WaitingListTO {
+public class WaitingListTO implements TransferObject {
   
   private String id;
   private String conferenceId;
-  private List<String> assistantsIds;
+  private String assistantId;
   
   public String getId() {
     return id;
@@ -20,10 +20,10 @@ public class WaitingListTO {
   public void setConferenceId(String conferenceId) {
     this.conferenceId = conferenceId;
   }
-  public List<String> getAssistantsIds() {
-    return assistantsIds;
+  public String getAssistantId() {
+    return assistantId;
   }
-  public void setAssistantsIds(List<String> assistantsIds) {
-    this.assistantsIds = assistantsIds;
+  public void setAssistantId(String assistantId) {
+    this.assistantId = assistantId;
   }
 }
