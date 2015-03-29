@@ -5,8 +5,8 @@ import co.edu.eafit.conferre.data.base.FactoryDAO;
 import co.edu.eafit.conferre.data.base.TransferObject;
 import co.edu.eafit.conferre.data.dao.RenterDAO;
 import co.edu.eafit.conferre.data.to.RenterTO;
-import co.edu.eafit.conferre.support.UnitOfWorkException;
-import co.edu.eafit.conferre.support.ValidationException;
+import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
+import co.edu.eafit.conferre.support.exceptions.ValidationException;
 
 public class CreateRenterUseCase implements UnitOfWork {
   

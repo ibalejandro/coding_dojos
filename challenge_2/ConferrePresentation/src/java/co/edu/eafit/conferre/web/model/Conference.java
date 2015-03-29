@@ -1,11 +1,14 @@
-package co.edu.eafit.conferre.data.to;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package co.edu.eafit.conferre.web.model;
 
+import co.edu.eafit.conferre.data.to.ConferenceTO;
 import java.util.Date;
 
-import co.edu.eafit.conferre.data.base.TransferObject;
-
-public class ConferenceTO implements TransferObject {
-  
+public class Conference {
   private String id;
   private String name;
   private String lecturerName;
@@ -14,21 +17,6 @@ public class ConferenceTO implements TransferObject {
   private int availableSeats;
   private String renterId;
 
-  public ConferenceTO() {
-    
-  }
-
-  public ConferenceTO(String id, String name, String lecturerName, String type,
-                      Date date, int availableSeats, String renterId) {
-    this.id = id;
-    this.name = name;
-    this.lecturerName = lecturerName;
-    this.type = type;
-    this.date = date;
-    this.availableSeats = availableSeats;
-    this.renterId = renterId;
-  }
-  
   public String getId() {
     return id;
   }
@@ -70,5 +58,15 @@ public class ConferenceTO implements TransferObject {
   }
   public void setRenterId(String renterId) {
     this.renterId = renterId;
+  }
+  
+  public void update(ConferenceTO conference) {
+    id = conference.getId();
+    name = conference.getName();
+    lecturerName = conference.getLecturerName();
+    type = conference.getType();
+    date = conference.getDate();
+    availableSeats = conference.getAvailableSeats();
+    renterId = conference.getId();
   }
 }

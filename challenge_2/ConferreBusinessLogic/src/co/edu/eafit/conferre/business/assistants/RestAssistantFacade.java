@@ -1,7 +1,7 @@
 package co.edu.eafit.conferre.business.assistants;
 
 import co.edu.eafit.conferre.data.to.AssistantTO;
-import co.edu.eafit.conferre.support.UnitOfWorkException;
+import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 
 public class RestAssistantFacade implements AssistantFacade {
   

@@ -7,8 +7,8 @@ import co.edu.eafit.conferre.data.base.TransferObject;
 import co.edu.eafit.conferre.data.base.TransferObjectList;
 import co.edu.eafit.conferre.data.dao.SpaceDAO;
 import co.edu.eafit.conferre.data.to.SpaceTO;
-import co.edu.eafit.conferre.support.UnitOfWorkException;
-import co.edu.eafit.conferre.support.ValidationException;
+import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
+import co.edu.eafit.conferre.support.exceptions.ValidationException;
 
 public class FindSpacesUseCase implements UnitOfWork {
   

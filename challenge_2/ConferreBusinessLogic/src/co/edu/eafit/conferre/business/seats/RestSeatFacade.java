@@ -6,7 +6,7 @@ import co.edu.eafit.conferre.business.conferences.FindConferenceUseCase;
 import co.edu.eafit.conferre.data.base.TransferObjectList;
 import co.edu.eafit.conferre.data.to.ConferenceTO;
 import co.edu.eafit.conferre.data.to.SeatTO;
-import co.edu.eafit.conferre.support.UnitOfWorkException;
+import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 
 public class RestSeatFacade implements SeatFacade {
   @Override

@@ -4,7 +4,7 @@ import java.util.List;
 
 import co.edu.eafit.conferre.data.base.TransferObjectList;
 import co.edu.eafit.conferre.data.to.EventTO;
-import co.edu.eafit.conferre.support.UnitOfWorkException;
+import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 
 public class RestEventFacade implements EventFacade {
   

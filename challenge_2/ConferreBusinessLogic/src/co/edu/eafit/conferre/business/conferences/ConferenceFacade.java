@@ -4,7 +4,7 @@ import java.util.List;
 
 import co.edu.eafit.conferre.data.to.ConferenceTO;
 import co.edu.eafit.conferre.data.to.SpaceTO;
-import co.edu.eafit.conferre.support.UnitOfWorkException;
+import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 
 public interface ConferenceFacade {
   public ConferenceTO createConference(ConferenceTO conference) throws UnitOfWorkException;

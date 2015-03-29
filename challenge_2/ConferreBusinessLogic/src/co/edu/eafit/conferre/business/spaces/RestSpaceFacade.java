@@ -1,7 +1,7 @@
 package co.edu.eafit.conferre.business.spaces;
 
 import co.edu.eafit.conferre.data.to.SpaceTO;
-import co.edu.eafit.conferre.support.UnitOfWorkException;
+import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 
 public class RestSpaceFacade implements SpaceFacade {
   @Override

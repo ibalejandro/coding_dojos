@@ -6,7 +6,7 @@ import co.edu.eafit.conferre.business.spaces.FindSpacesUseCase;
 import co.edu.eafit.conferre.data.base.TransferObjectList;
 import co.edu.eafit.conferre.data.to.ConferenceTO;
 import co.edu.eafit.conferre.data.to.SpaceTO;
-import co.edu.eafit.conferre.support.UnitOfWorkException;
+import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 
 //@Path("/conferences")
 public class RestConferenceFacade implements ConferenceFacade {

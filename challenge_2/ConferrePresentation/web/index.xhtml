@@ -1,31 +1,179 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
 </h:head>
 <h:body>
-  <p:dataTable value="#{spacesListView.spaces}" var="space">
-      <p:column>
-          <f:facet name="header">
-              <h:outputText value="Location"></h:outputText>
-          </f:facet>
-          <h:outputText value="#{space.location}"></h:outputText>
-      </p:column>
-      <p:column>
-          <f:facet name="header">
-              <h:outputText value="Available"></h:outputText>
-          </f:facet>
-          <h:outputText value="#{space.available}"></h:outputText>
-      </p:column>
-      <p:column>
-          <f:facet name="header">
-              <h:outputText value="Max capacity"></h:outputText>
-          </f:facet>
-          <h:outputText value="#{space.maxCapacity}"></h:outputText>
-      </p:column>
-  </p:dataTable>
+  <center>
+    <h1>Crear conferencia</h1>
+  </center>
+  <h:form id="form">
+    <p:growl id="msgs" showDetail="true" />
+    <h3>Información de la conferencia</h3>
+    <hr />
+    <table>
+      <tr>
+        <td>
+          <p:outputLabel value="Nombre o título " />
+        </td>
+        <td>
+          <p:inputText value="#{conferencesController.conference.name}"
+                       style="width: 100%;"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p:outputLabel value="Conferencista " />
+        </td>
+        <td>
+          <p:inputText value="#{conferencesController.conference.lecturerName}"
+                       style="width: 100%;"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p:outputLabel value="Tipo " />
+        </td>
+        <td>
+          <p:inputText value="#{conferencesController.conference.type}"
+                       placeholder="e.g. Salud, Cocina" style="width: 100%;"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p:outputLabel value="Fecha " />
+        </td>
+        <td>
+          <p:calendar mode="popup" style="width: 100%;" pattern="dd-MMM-yyyy"
+                      value="#{conferencesController.conference.date}"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p:outputLabel value="Cupos disponibles " />
+        </td>
+        <td>
+          <p:spinner value="#{conferencesController.conference.availableSeats}"
+                     min="0"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p:outputLabel value="Inquilino " />
+        </td>
+        <td>
+          <p:inputText value="#{conferencesController.conference.renterId}"
+                       label="Hola"
+                       style="width: 350px" />
+        </td>
+      </tr>
+    </table>
+
+    <!--<h3>Información del evento inicial</h3>
+    <hr />
+    <table>
+      <tr>
+        <td>
+          <p:outputLabel value="Nombre " />
+        </td>
+        <td>
+          <p:inputText value="#{eventsController.event.name}"
+                       style="width: 100%;"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p:outputLabel value="Tipo "/>
+        </td>
+        <td>
+          <p:inputText value="#{eventsController.event.type}"
+                       style="width: 100%;"
+                       placeholder="e.g. Exposición, Teoría" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p:outputLabel value="Descripción " />
+        </td>
+        <td>
+          <p:inputTextarea rows="4" cols="50" counter="remaining" maxlength="200"
+                           counterTemplate="{0}"
+                           autoResize="false" />
+          <br />
+          <h:outputText id="remaining" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p:outputLabel value="Fecha " />
+        </td>
+        <td>
+          <p:calendar mode="popup" style="width: 100%;" pattern="dd-MMM-yyyy"
+                      value="#{eventsController.event.date}"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p:outputLabel value="Cupos disponibles " />
+        </td>
+        <td>
+          <p:spinner value="#{eventsController.event.availableSeats}"
+                     min="0" />
+        </td>
+      </tr>
+    </table>-->
+
+    <!--<h3>Espacio para el evento</h3>
+    <hr />
+    <table>
+      <tr>
+        <td>
+          <p:outputLabel value="Espacio " />
+        </td>
+        <td>
+          <p:selectOneMenu value="#{spacesController.space}">
+            <f:selectItems value="#{spacesController.spaces}" var="space" 
+                           itemLabel="#{space.location}"
+                           itemValue="#{space.id}"/>-
+          </p:selectOneMenu>
+        </td>
+      </tr>
+    </table>-->
+    <center>
+      <p:commandButton value="Crear" icon="ui-icon-check" update="msgs"
+                       actionListener="#{conferencesController.click}" />
+    </center>
+    
+    <p:dialog modal="true" resizable="false" header="Respuesta" widgetVar="dlg"
+              showEffect="fold">
+        <p:panelGrid id="display" columns="2" columnClasses="label,value">
+            <h:outputText value="ID " />
+            <h:outputText value="#{conferencesController.conference.id}" />
+            
+            <h:outputText value="Nombre o título" />
+            <h:outputText value="#{conferencesController.conference.name}" />
+            
+            <h:outputText value="Conferencista " />
+            <h:outputText value="#{conferencesController.conference.lecturerName}" />
+            
+            <h:outputText value="Tipo " />
+            <h:outputText value="#{conferencesController.conference.type}" />
+            
+            <h:outputText value="Fecha " />
+            <h:outputText value="#{conferencesController.conference.date}">
+              <f:convertDateTime pattern="dd/MMM/yyyy" />
+            </h:outputText>
+            
+            <h:outputText value="Cupos disponibles " />
+            <h:outputText value="#{conferencesController.conference.availableSeats}" />
+            
+            <h:outputText value="Inquilino " />
+            <h:outputText value="#{conferencesController.conference.renterId}" />
+        </p:panelGrid>
+    </p:dialog>
+  </h:form>
 </h:body>
 </html>
