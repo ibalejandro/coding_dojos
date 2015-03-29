@@ -29,5 +29,8 @@ public class CreateConferenceUseCase implements UnitOfWork {
     if (conference.getName() == null || conference.getName().equals("")) {
       throw new ValidationException("Conference name can't be blank");
     }
+    if (conference.getDate() == null) {
+      throw new ValidationException(("Date can't be blank"));
+    }
   }
 }

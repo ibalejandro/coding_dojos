@@ -8,10 +8,13 @@ package co.edu.eafit.conferre.web.controllers;
 import co.edu.eafit.conferre.business.conferences.RestConferenceFacade;
 import co.edu.eafit.conferre.data.to.ConferenceTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
+import co.edu.eafit.conferre.support.exceptions.ValidationException;
 import co.edu.eafit.conferre.web.model.Conference;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
 @ManagedBean
@@ -23,7 +26,7 @@ public class ConferencesController {
   @PostConstruct
   public void init() {
     conference = new Conference();
-    conference.setRenterId("3b105dc6-46f9-441a-8995-18c26db9046b");
+    conference.setRenterId("4e231f56-6834-4447-92c9-087b55205226");
   }
   
   public void click() {
@@ -40,7 +43,15 @@ public class ConferencesController {
       result = restConferenceFacade.createConference(newConference);
     } catch (UnitOfWorkException ex) {
       System.err.println("Error: " + ex.getMessage());
-      ex.printStackTrace();
+      FacesContext context = FacesContext.getCurrentInstance();
+      String message;
+      if (ex instanceof ValidationException) {
+        message = ex.getMessage();
+      }
+      else {
+        message = "An error has occurred";
+      }
+      context.addMessage(null, new FacesMessage("Error",  message));
       return;
     }
     conference.update(result);
