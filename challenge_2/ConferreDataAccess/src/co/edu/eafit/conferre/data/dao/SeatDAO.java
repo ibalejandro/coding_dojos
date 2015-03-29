@@ -1,6 +1,7 @@
 package co.edu.eafit.conferre.data.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,8 @@ import java.util.UUID;
 
 import co.edu.eafit.conferre.data.base.GenericDAO;
 import co.edu.eafit.conferre.data.base.TransferObject;
+import co.edu.eafit.conferre.data.base.TransferObjectList;
+import co.edu.eafit.conferre.data.to.ConferenceTO;
 import co.edu.eafit.conferre.data.to.SeatTO;
 
 public class SeatDAO implements GenericDAO {
@@ -45,24 +48,47 @@ public class SeatDAO implements GenericDAO {
   }
 
   @Override
-  public List<TransferObject> retrieve(TransferObject params) {
+  public TransferObjectList retrieve(TransferObject params) {
     SeatTO seat = null;
-    List<TransferObject> result = new ArrayList<TransferObject>();
+    TransferObjectList result = new TransferObjectList();
+    String statement = "SELECT * "
+                     + "FROM seats "
+                     + "WHERE id LIKE ? AND "
+                           + "number LIKE ? AND "
+                           + "type LIKE ? AND "
+                           + "available = ?";
+    seat = (SeatTO) params;
+    boolean hasSpace = false;
+    if (seat.getSpaceId() != GenericDAO.ANY_PATTERN) {
+      statement += " AND space_id LIKE ?";
+      hasSpace = true;
+    }
+    if (seat.getAssistantId() != GenericDAO.ANY_PATTERN) {
+      statement += " AND assistant_id LIKE ?";
+    }
     PreparedStatement prep;
     try {
-      seat = (SeatTO) params;
-      prep = conn
-          .prepareStatement("SELECT * FROM seats WHERE number = ?"
-                          + "AND type = ? AND available = ? AND space_id = ?"
-                          + "AND assistant_id = ?");
-      prep.setInt(1, seat.getNumber());
-      prep.setString(2, seat.getType());
-      prep.setBoolean(3, seat.isAvailable());
-      prep.setString(4, seat.getSpaceId());
-      prep.setString(5, seat.getAssistantId());
+      prep = conn.prepareStatement(statement);
+      prep.setString(1, seat.getId());
+      if (seat.getNumber() <= 0) {
+        prep.setString(2, GenericDAO.ANY_PATTERN);
+      }
+      else {
+        prep.setInt(2, seat.getNumber());
+      }
+      prep.setString(3, seat.getType());
+      prep.setBoolean(4, seat.isAvailable());
+      if (seat.getSpaceId() != GenericDAO.ANY_PATTERN) {
+        prep.setString(5, seat.getSpaceId());
+      }
+      if (seat.getAssistantId() != GenericDAO.ANY_PATTERN) {
+        prep.setString(hasSpace ? 6 : 5, seat.getAssistantId());
+      }
+
       ResultSet resultSet = prep.executeQuery();
       while (resultSet.next()) {
         SeatTO row = new SeatTO();
+        row.setId(resultSet.getString("id"));
         row.setNumber(resultSet.getInt("number"));
         row.setType(resultSet.getString("type"));
         row.setAvailable(resultSet.getBoolean("available"));

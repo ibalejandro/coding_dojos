@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import co.edu.eafit.conferre.data.base.GenericDAO;
 import co.edu.eafit.conferre.data.base.TransferObject;
+import co.edu.eafit.conferre.data.base.TransferObjectList;
 import co.edu.eafit.conferre.data.to.AssistantTO;
 
 public class AssistantDAO implements GenericDAO {
@@ -46,9 +47,9 @@ public class AssistantDAO implements GenericDAO {
   }
 
   @Override
-  public List<TransferObject> retrieve(TransferObject params) {
+  public TransferObjectList retrieve(TransferObject params) {
     AssistantTO assistant = null;
-    List<TransferObject> result = new ArrayList<TransferObject>();
+    TransferObjectList result = new TransferObjectList();
     PreparedStatement prep;
     try {
       assistant = (AssistantTO) params;

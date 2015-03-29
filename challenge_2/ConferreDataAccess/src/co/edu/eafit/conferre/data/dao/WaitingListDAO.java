@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import co.edu.eafit.conferre.data.base.GenericDAO;
 import co.edu.eafit.conferre.data.base.TransferObject;
+import co.edu.eafit.conferre.data.base.TransferObjectList;
 import co.edu.eafit.conferre.data.to.WaitingListTO;
 
 public class WaitingListDAO implements GenericDAO {
@@ -40,7 +41,7 @@ public class WaitingListDAO implements GenericDAO {
   }
 
   @Override
-  public List<TransferObject> retrieve(TransferObject params) {
+  public TransferObjectList retrieve(TransferObject params) {
     return null;
   }
 

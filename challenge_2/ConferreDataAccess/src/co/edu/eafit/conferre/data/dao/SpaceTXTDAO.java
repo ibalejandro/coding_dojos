@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.edu.eafit.conferre.data.base.TransferObject;
+import co.edu.eafit.conferre.data.base.TransferObjectList;
 import co.edu.eafit.conferre.data.to.SpaceTO;
 
 public class SpaceTXTDAO implements SpaceDAO {
@@ -49,9 +50,9 @@ public class SpaceTXTDAO implements SpaceDAO {
   }
 
   @Override
-  public List<TransferObject> retrieve(TransferObject params) {
+  public TransferObjectList retrieve(TransferObject params) {
     SpaceTO space = null;
-    List<TransferObject> result = new ArrayList<TransferObject>();
+    TransferObjectList result = new TransferObjectList();
     try {
       reader = new  BufferedReader(new FileReader(file));
       space = (SpaceTO) params;

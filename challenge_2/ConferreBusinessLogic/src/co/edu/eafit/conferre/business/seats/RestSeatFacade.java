@@ -1,5 +1,10 @@
 package co.edu.eafit.conferre.business.seats;
 
+import java.util.List;
+
+import co.edu.eafit.conferre.business.conferences.FindConferenceUseCase;
+import co.edu.eafit.conferre.data.base.TransferObjectList;
+import co.edu.eafit.conferre.data.to.ConferenceTO;
 import co.edu.eafit.conferre.data.to.SeatTO;
 import co.edu.eafit.conferre.support.UnitOfWorkException;
 
@@ -20,5 +25,27 @@ public class RestSeatFacade implements SeatFacade {
       throw e;
     }
     return seatResult;
+  }
+  
+  @Override
+  //@Path("/find")
+  //@POST
+  //@Consumes("application/json")
+  //@Produces("application/json")
+  //Jersey y nosequé json
+  public List<SeatTO> findSeats(SeatTO params) 
+      throws UnitOfWorkException {
+    if (params == null) params = new SeatTO();
+    FindSeatUseCase useCase = new FindSeatUseCase();
+    List<SeatTO> result;
+    try {
+      TransferObjectList seatResult = 
+          (TransferObjectList) useCase.execute(params); 
+      result = (List<SeatTO>)(List<?>) seatResult.getList();
+    }
+    catch (UnitOfWorkException e) {
+      throw e;
+    }
+    return result;
   }
 }

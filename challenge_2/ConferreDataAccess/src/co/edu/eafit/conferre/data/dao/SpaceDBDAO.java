@@ -8,7 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import co.edu.eafit.conferre.data.base.GenericDAO;
 import co.edu.eafit.conferre.data.base.TransferObject;
+import co.edu.eafit.conferre.data.base.TransferObjectList;
+import co.edu.eafit.conferre.data.to.SeatTO;
 import co.edu.eafit.conferre.data.to.SpaceTO;
 
 public class SpaceDBDAO implements SpaceDAO {
@@ -43,27 +46,42 @@ public class SpaceDBDAO implements SpaceDAO {
   }
 
   @Override
-  public List<TransferObject> retrieve(TransferObject params) {
-    SpaceTO space = null;
-    List<TransferObject> result = new ArrayList<TransferObject>();
+  public TransferObjectList retrieve(TransferObject params) {
+    TransferObjectList result = new TransferObjectList();
+    String statement = "SELECT * "
+                     + "FROM spaces "
+                     + "WHERE id LIKE ? AND "
+                           + "max_capacity LIKE ? AND "
+                           + "location LIKE ? AND "
+                           + "available = ?";
+    SpaceTO space = (SpaceTO) params;
+    if (space.getEventId() != GenericDAO.ANY_PATTERN) {
+      statement += " AND event_id LIKE ?";
+    }
     PreparedStatement prep;
     try {
-      space = (SpaceTO) params;
-      prep = conn
-          .prepareStatement("SELECT * FROM spaces WHERE max_capacity = ?"
-                          + "AND location = ? AND available = ? AND "
-                          + "event_id = ?");
-      prep.setInt(1, space.getMaxCapacity());
-      prep.setString(2, space.getLocation());
-      prep.setBoolean(3, space.isAvailable());
-      prep.setString(4, space.getEventId());
+      prep = conn.prepareStatement(statement);
+      prep.setString(1, space.getId());
+      if (space.getMaxCapacity() <= 0) {
+        prep.setString(2, GenericDAO.ANY_PATTERN);
+      }
+      else {
+        prep.setInt(2, space.getMaxCapacity());
+      }
+      prep.setString(3, space.getLocation());
+      prep.setBoolean(4, space.isAvailable());
+      if (space.getEventId() != GenericDAO.ANY_PATTERN) {
+        prep.setString(5, space.getEventId());
+      }
+
       ResultSet resultSet = prep.executeQuery();
       while (resultSet.next()) {
         SpaceTO row = new SpaceTO();
+        row.setId(resultSet.getString("id"));
         row.setMaxCapacity(resultSet.getInt("max_capacity"));
         row.setLocation(resultSet.getString("location"));
         row.setAvailable(resultSet.getBoolean("available"));
-        row.setEventId(resultSet.getString("event_id)"));
+        row.setEventId(resultSet.getString("event_id"));
         result.add(row);
       }
     }

@@ -1,11 +1,11 @@
 package co.edu.eafit.conferre.data.base;
 
-import java.util.List;
-
 public interface GenericDAO {
   
+  public static final String ANY_PATTERN = "%";
+  
   public TransferObject create(TransferObject newObject) throws Exception;
-  public List<TransferObject> retrieve(TransferObject params);
+  public TransferObjectList retrieve(TransferObject params);
   public int update(TransferObject object);
   public int delete(TransferObject params);
 }

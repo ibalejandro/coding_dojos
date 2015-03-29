@@ -5,12 +5,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import co.edu.eafit.conferre.data.base.GenericDAO;
 import co.edu.eafit.conferre.data.base.TransferObject;
+import co.edu.eafit.conferre.data.base.TransferObjectList;
 import co.edu.eafit.conferre.data.to.EventTO;
 
 public class EventDAO implements GenericDAO {
@@ -49,26 +48,46 @@ public class EventDAO implements GenericDAO {
   }
 
   @Override
-  public List<TransferObject> retrieve(TransferObject params) {
+  public TransferObjectList retrieve(TransferObject params) {
     EventTO event = null;
-    List<TransferObject> result = new ArrayList<TransferObject>();
+    TransferObjectList result = new TransferObjectList();
     PreparedStatement prep;
     try {
       event = (EventTO) params;
       prep = conn
-          .prepareStatement("SELECT * FROM events WHERE name = ?"
-                          + "OR type = ? OR description = ? OR date = ? "
-                          + "OR available_seats = ? OR conference_id = ?");
-      prep.setString(1, event.getName());
-      prep.setString(2, event.getType());
-      prep.setString(3, event.getDescription());
-      Date date = new Date(event.getDate().getTime());
-      prep.setDate(4, date);
-      prep.setInt(5,  event.getAvailableSeats());
-      prep.setString(6, event.getConferenceId());
+          .prepareStatement("SELECT * "
+                          + "FROM events "
+                          + "WHERE id LIKE ? AND "
+                                + "name LIKE ? AND "
+                                + "type LIKE ? AND "
+                                + "description LIKE ? AND "
+                                + "date LIKE ? AND "
+                                + "available_seats LIKE ? AND "
+                                + "conference_id LIKE ?");
+
+      prep.setString(1, event.getId());
+      prep.setString(2, event.getName());
+      prep.setString(3, event.getType());
+      prep.setString(4, event.getDescription());
+      if (event.getDate() == null) {
+        prep.setString(5, GenericDAO.ANY_PATTERN);
+      }
+      else {
+        Date date = new Date(event.getDate().getTime());
+        prep.setDate(5, date);
+      }
+      if (event.getAvailableSeats() < 0) {
+        prep.setString(6, GenericDAO.ANY_PATTERN);
+      }
+      else {
+        prep.setInt(6,  event.getAvailableSeats());
+      }
+      prep.setString(7, event.getConferenceId());
+
       ResultSet resultSet = prep.executeQuery();
       while (resultSet.next()) {
         EventTO row = new EventTO();
+        row.setId(resultSet.getString("id"));
         row.setName(resultSet.getString("name"));
         row.setType(resultSet.getString("type"));
         row.setDescription(resultSet.getString("description"));
