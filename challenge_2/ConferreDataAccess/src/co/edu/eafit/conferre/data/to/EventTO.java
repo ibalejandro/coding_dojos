@@ -13,7 +13,22 @@ public class EventTO implements TransferObject {
   private Date date;
   private int availableSeats;
   private String conferenceId;
+
+  public EventTO() {
+    
+  }
   
+  public EventTO(String id, String name, String type, String description,
+                 Date date, int availableSeats, String conferenceId) {
+    this.id = id;
+    this.name = name;
+    this.type = type;
+    this.description = description;
+    this.date = date;
+    this.availableSeats = availableSeats;
+    this.conferenceId = conferenceId;
+  }
+
   public String getId() {
     return id;
   }

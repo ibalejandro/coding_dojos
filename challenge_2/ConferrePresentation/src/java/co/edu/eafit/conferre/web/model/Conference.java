@@ -67,6 +67,6 @@ public class Conference {
     type = conference.getType();
     date = conference.getDate();
     availableSeats = conference.getAvailableSeats();
-    renterId = conference.getId();
+    renterId = conference.getRenterId();
   }
 }

@@ -16,12 +16,13 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class SpacesController {
-  private List<Space> spaces = new ArrayList<Space>();
+  private List<Space> spaces;
   private Space space;
   private RestConferenceFacade restConferenceFacade;
   
   @PostConstruct
   public void init() {
+    spaces = new ArrayList();
     space = new Space();
     List<SpaceTO> spacesTransfer;
     try {
@@ -34,11 +35,7 @@ public class SpacesController {
     }
     for (SpaceTO spaceItem : spacesTransfer) {
       Space newSpace = new Space();
-      newSpace.setId(spaceItem.getId());
-      newSpace.setLocation(spaceItem.getLocation());
-      newSpace.setAvailable(spaceItem.isAvailable());
-      newSpace.setMaxCapacity(spaceItem.getMaxCapacity());
-      newSpace.setEventId(spaceItem.getEventId());
+      newSpace.update(spaceItem);
       spaces.add(newSpace);
     }
   }

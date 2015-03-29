@@ -5,6 +5,8 @@
  */
 package co.edu.eafit.conferre.web.model;
 
+import co.edu.eafit.conferre.data.to.SpaceTO;
+
 /**
  *
  * @author svanegas
@@ -45,5 +47,13 @@ public class Space {
   }
   public void setEventId(String eventId) {
     this.eventId = eventId;
+  }
+  
+  public void update(SpaceTO space) {
+    id = space.getId();
+    maxCapacity = space.getMaxCapacity();
+    location = space.getLocation();
+    available = space.isAvailable();
+    eventId = space.getEventId();
   }
 }

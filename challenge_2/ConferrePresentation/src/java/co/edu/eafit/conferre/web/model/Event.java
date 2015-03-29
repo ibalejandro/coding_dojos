@@ -5,6 +5,7 @@
  */
 package co.edu.eafit.conferre.web.model;
 
+import co.edu.eafit.conferre.data.to.EventTO;
 import java.util.Date;
 
 public class Event {
@@ -16,6 +17,20 @@ public class Event {
   private Date date;
   private int availableSeats;
   private String conferenceId;
+  
+  public Event() {
+    
+  }
+  
+  public Event(Event copy) {
+    id = copy.getId();
+    name = copy.getName();
+    type = copy.getType();
+    description = copy.getDescription();
+    date = copy.getDate();
+    availableSeats = copy.getAvailableSeats();
+    conferenceId = copy.getConferenceId();
+  }
   
   public String getId() {
     return id;
@@ -58,5 +73,25 @@ public class Event {
   }
   public void setConferenceId(String conferenceId) {
     this.conferenceId = conferenceId;
+  }
+  
+  public void update(EventTO event) {
+    id = event.getId();
+    name = event.getName();
+    type = event.getType();
+    description = event.getDescription();
+    date = event.getDate();
+    availableSeats = event.getAvailableSeats();
+    conferenceId = event.getConferenceId();
+  }
+  
+  public void clearFields() {
+    id = "";
+    name = "";
+    type = "";
+    description = "";
+    date = null;
+    availableSeats = 0;
+    conferenceId = "";
   }
 }
