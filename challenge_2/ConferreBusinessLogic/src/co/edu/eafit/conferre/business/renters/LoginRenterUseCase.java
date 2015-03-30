@@ -28,7 +28,6 @@ public class LoginRenterUseCase implements UnitOfWork{
       if (resultList.getList().isEmpty()) result = null;
       else {
         result = (RenterTO) resultList.get(0);
-        System.out.println(result.getEmail() + " " + result.getName() + " " + result.getPassword());
       }
     }
     catch (Exception e) {

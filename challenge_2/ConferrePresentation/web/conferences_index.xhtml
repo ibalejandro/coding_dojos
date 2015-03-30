@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+  <center>
+    <h1>Lista de conferencias</h1>
+  </center>
+  <h:form> 
+    <p:dataScroller value="#{conferencesController.conferences}"
+                    var="conference" chunkSize="10"
+                    scrollHeight="500">
+      <f:facet name="header">
+          Desplácese hacia abajo para cargar más conferencias
+      </f:facet>
+      <f:facet name="loader">
+        <p:commandButton type="button" value="More" icon="ui-icon-circle-triangle-s"/>
+      </f:facet>
+      <h:panelGrid columns="1" style="width:100%" columnClasses="detail">
+        <table>
+          <tr>
+            <td>
+              <p:outputPanel>
+                <h:panelGrid columns="2" cellpadding="5">
+                  <h:outputText value="Nombre o título " />
+                  <h:outputText value="#{conference.name}" style="font-weight: bold"/>
+
+                  <h:outputText value="Conferencista " />
+                  <h:outputText value="#{conference.lecturerName}"
+                                style="font-weight: bold"/>
+
+                  <h:outputText value="Type " />
+                  <h:outputText value="#{conference.type}" style="font-weight: bold"/>
+
+                  <h:outputText value="Fecha " />
+                  <h:outputText value="#{conference.date}" style="font-weight: bold">
+                    <f:convertDateTime pattern="dd-MMM-yyyy" />
+                  </h:outputText>
+
+                  <h:outputText value="Cupos disponibles " />
+                  <h:outputText value="#{conference.availableSeats}"
+                                style="font-weight: bold"/>
+                </h:panelGrid>
+              </p:outputPanel>
+            </td>
+            <td>
+              <p:commandButton value="Mostrar eventos y detalles" icon="ui-icon-circle-zoomin"
+                               actionListener="#{conferencesController.showConferenceDetails(conference)}" />
+              <!--<p:button value="Ver eventos" icon="ui-icon-circle-zoomin" />-->
+            </td>
+          </tr>
+        </table>
+      </h:panelGrid>
+      <p:separator />
+    </p:dataScroller>
+</h:form>
+</h:body>
+</html>
