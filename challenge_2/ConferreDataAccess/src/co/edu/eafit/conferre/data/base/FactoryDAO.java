@@ -28,6 +28,9 @@ public class FactoryDAO {
   private static final String USER = "root";
   private static final String PASS = "";
   
+  public static final int SOURCE_TEXT = 1;
+  public static final int SOURCE_DB = 2;
+  
   private static void createConnection() {
     try {
       Class.forName("com.mysql.jdbc.Driver");
@@ -78,10 +81,10 @@ public class FactoryDAO {
   public static SpaceDAO createSpaceDAO(int sourceType) {
     SpaceDAO ret = null;
     switch (sourceType) {
-      case 1:
+      case SOURCE_TEXT:
         ret = new SpaceTXTDAO(openFile());
         break;
-      case 2:
+      case SOURCE_DB:
         ret = new SpaceDBDAO(getConnection());
         break;
     }

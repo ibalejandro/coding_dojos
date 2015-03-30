@@ -7,6 +7,7 @@ package co.edu.eafit.conferre.web.controllers;
 
 import co.edu.eafit.conferre.business.events.RestEventFacade;
 import co.edu.eafit.conferre.data.to.EventTO;
+import co.edu.eafit.conferre.data.to.SpaceTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 import co.edu.eafit.conferre.support.exceptions.ValidationException;
 import co.edu.eafit.conferre.web.model.Conference;
@@ -38,7 +39,7 @@ public class EventsController {
     restEventFacade = new RestEventFacade();
   }
   
-  public void click() {
+  public void click(String spaceId) {
     EventTO newEvent = new EventTO(
             event.getId(), event.getName(),
             event.getType(), event.getDescription(),
@@ -58,7 +59,26 @@ public class EventsController {
       showMessage("Error", message);
       return;
     }
-    
+    if (spaceId != null && !spaceId.isEmpty()) {
+      SpaceTO space = new SpaceTO();
+      space.setId(spaceId);
+      space.setEventId(result.getId());
+      try {
+        restEventFacade.associateSpace(space);
+      }
+      catch (UnitOfWorkException ex) {
+        System.err.println("Error: " + ex.getMessage());
+        ex.printStackTrace();
+        String message;
+        if (ex instanceof ValidationException) message = ex.getMessage();
+        else message = "An error has occurred";
+        showMessage("Error", message);
+        return;
+      }
+    }
+    else {
+      System.out.println("No se seleccionó espacio");
+    }
     event.update(result);
     events.add(new Event(event));
     event.clearFields();

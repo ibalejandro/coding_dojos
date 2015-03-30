@@ -11,7 +11,6 @@ import java.util.UUID;
 import co.edu.eafit.conferre.data.base.GenericDAO;
 import co.edu.eafit.conferre.data.base.TransferObject;
 import co.edu.eafit.conferre.data.base.TransferObjectList;
-import co.edu.eafit.conferre.data.to.SeatTO;
 import co.edu.eafit.conferre.data.to.SpaceTO;
 
 public class SpaceDBDAO implements SpaceDAO {
@@ -55,7 +54,7 @@ public class SpaceDBDAO implements SpaceDAO {
                            + "location LIKE ? AND "
                            + "available = ?";
     SpaceTO space = (SpaceTO) params;
-    if (space.getEventId() != GenericDAO.ANY_PATTERN) {
+    if (!space.getEventId().equals(GenericDAO.ANY_PATTERN)) {
       statement += " AND event_id LIKE ?";
     }
     PreparedStatement prep;
@@ -70,7 +69,7 @@ public class SpaceDBDAO implements SpaceDAO {
       }
       prep.setString(3, space.getLocation());
       prep.setBoolean(4, space.isAvailable());
-      if (space.getEventId() != GenericDAO.ANY_PATTERN) {
+      if (!space.getEventId().equals(GenericDAO.ANY_PATTERN)) {
         prep.setString(5, space.getEventId());
       }
 
@@ -100,11 +99,11 @@ public class SpaceDBDAO implements SpaceDAO {
       PreparedStatement prep = conn
           .prepareStatement("UPDATE spaces SET max_capacity = ?, "
               + "location = ?, available = ?, event_id = ? WHERE id = ?");
-      prep.setInt(2, space.getMaxCapacity());
-      prep.setString(3, space.getLocation());
-      prep.setBoolean(4, space.isAvailable());
-      prep.setString(5, space.getEventId());
-      prep.setString(1,  space.getId());
+      prep.setInt(1, space.getMaxCapacity());
+      prep.setString(2, space.getLocation());
+      prep.setBoolean(3, space.isAvailable());
+      prep.setString(4, space.getEventId());
+      prep.setString(5,  space.getId());
       response = prep.executeUpdate();
     }
     catch (SQLException e) {

@@ -26,4 +26,9 @@ public class TransferObjectList implements TransferObject {
   public void add(TransferObject item) {
     list.add(item);
   }
+  
+  public TransferObject get(int index) {
+    if (index >= list.size()) return null;
+    return list.get(index);
+  }
 }

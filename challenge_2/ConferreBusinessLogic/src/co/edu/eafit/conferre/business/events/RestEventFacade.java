@@ -4,6 +4,7 @@ import java.util.List;
 
 import co.edu.eafit.conferre.data.base.TransferObjectList;
 import co.edu.eafit.conferre.data.to.EventTO;
+import co.edu.eafit.conferre.data.to.SpaceTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 
 public class RestEventFacade implements EventFacade {
@@ -46,5 +47,23 @@ public class RestEventFacade implements EventFacade {
       throw e;
     }
     return result;
+  }
+  
+  @Override
+  //@Path("/")
+  //@POST
+  //@Consumes("application/json")
+  //@Produces("application/json")
+  //Jersey y nosequé json
+  public int associateSpace(SpaceTO space) throws UnitOfWorkException {
+    AssignSpaceUseCase useCase = new AssignSpaceUseCase();
+    SpaceTO spaceResult = null;
+    try {
+      spaceResult = (SpaceTO) useCase.execute(space); 
+    }
+    catch (UnitOfWorkException e) {
+      throw e;
+    }
+    return spaceResult == null ? 0 : 1;
   }
 }

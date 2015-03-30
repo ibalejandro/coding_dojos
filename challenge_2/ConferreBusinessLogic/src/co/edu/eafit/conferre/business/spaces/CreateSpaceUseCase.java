@@ -10,14 +10,13 @@ import co.edu.eafit.conferre.support.exceptions.ValidationException;
 
 public class CreateSpaceUseCase implements UnitOfWork {
   
-  private static final int SOURCE_TEXT = 1;
-  private static final int SOURCE_DB = 2;
+  
   
   @Override
   public TransferObject execute(TransferObject params) throws UnitOfWorkException {
     SpaceTO space = (SpaceTO) params;
     validateSpaceData(space);
-    SpaceDAO spaceDAO = FactoryDAO.createSpaceDAO(SOURCE_DB);
+    SpaceDAO spaceDAO = FactoryDAO.createSpaceDAO(FactoryDAO.SOURCE_DB);
     SpaceTO result;
     try {
       result = (SpaceTO) spaceDAO.create(space);

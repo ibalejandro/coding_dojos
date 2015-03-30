@@ -160,56 +160,33 @@
                      min="0" max="#{conferencesController.conference.availableSeats}" />
         </td>
       </tr>
-    </table>
-    <center>
-      <p:commandButton value="Agregar" icon="ui-icon-check"
-                       update="msgs,events_table,form"
-                       action="#{eventsController.click}" />
-    </center>
-    
-    <!--<p:dialog modal="true" resizable="false" header="Respuesta" widgetVar="dlg"
-              showEffect="fold">
-      <p:panelGrid id="display" columns="2" columnClasses="label,value">
-        <h:outputText value="ID " />
-        <h:outputText value="#{eventsController.event.id}" />
-
-        <h:outputText value="Nombre" />
-        <h:outputText value="#{eventsController.event.name}" />
-
-        <h:outputText value="Tipo " />
-        <h:outputText value="#{eventsController.event.type}" />
-
-        <h:outputText value="Descripción " />
-        <h:outputText value="#{eventsController.event.description}" />
-
-        <h:outputText value="Fecha " />
-        <h:outputText value="#{eventsController.event.date}">
-          <f:convertDateTime pattern="dd/MMM/yyyy" />
-        </h:outputText>
-
-        <h:outputText value="Cupos disponibles " />
-        <h:outputText value="#{eventsController.event.availableSeats}" />
-
-        <h:outputText value="Conferencia " />
-        <h:outputText value="#{eventsController.event.conferenceId}" />
-      </p:panelGrid>
-    </p:dialog>-->
-    <!--<h3>Espacio para el evento</h3>
-    <hr />
-    <table>
       <tr>
         <td>
           <p:outputLabel value="Espacio " />
         </td>
         <td>
-          <p:selectOneMenu value="#{spacesController.space}">
-            <f:selectItems value="#{spacesController.spaces}" var="space" 
-                           itemLabel="#{space.location}"
-                           itemValue="#{space.id}"/>-
+          <p:selectOneMenu value="#{spacesController.space.id}" style="width: 100%">
+            <f:selectItem itemLabel="Definir más tarde" itemValue="" />
+            <f:selectItems value="#{spacesController.spaces}" var="space"
+                           itemLabel="#{space.location} (capacidad: #{space.maxCapacity})"
+                           itemValue="#{space.id}" />
           </p:selectOneMenu>
         </td>
       </tr>
-    </table>-->  
+    </table>
+    <center>
+      <p:commandButton value="Agregar" icon="ui-icon-check"
+                       update="msgs,events_table,form"
+                       action="#{eventsController.click(spacesController.space.id)}"/>
+      
+    </center>
+
+    <p:dialog modal="true" resizable="false" header="Respuesta" widgetVar="dlg"
+              showEffect="fold">
+      <p:panelGrid id="display" columns="1" columnClasses="value">
+        <h:outputText value="#{spacesController.space.id}" />
+      </p:panelGrid>
+    </p:dialog>
   </h:form>
 </h:body>
 </html>

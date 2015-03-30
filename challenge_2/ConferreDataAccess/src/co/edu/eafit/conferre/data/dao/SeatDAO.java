@@ -59,11 +59,11 @@ public class SeatDAO implements GenericDAO {
                            + "available = ?";
     seat = (SeatTO) params;
     boolean hasSpace = false;
-    if (seat.getSpaceId() != GenericDAO.ANY_PATTERN) {
+    if (!seat.getSpaceId().equals(GenericDAO.ANY_PATTERN)) {
       statement += " AND space_id LIKE ?";
       hasSpace = true;
     }
-    if (seat.getAssistantId() != GenericDAO.ANY_PATTERN) {
+    if (!seat.getAssistantId().equals(GenericDAO.ANY_PATTERN)) {
       statement += " AND assistant_id LIKE ?";
     }
     PreparedStatement prep;
@@ -78,10 +78,10 @@ public class SeatDAO implements GenericDAO {
       }
       prep.setString(3, seat.getType());
       prep.setBoolean(4, seat.isAvailable());
-      if (seat.getSpaceId() != GenericDAO.ANY_PATTERN) {
+      if (!seat.getSpaceId().equals(GenericDAO.ANY_PATTERN)) {
         prep.setString(5, seat.getSpaceId());
       }
-      if (seat.getAssistantId() != GenericDAO.ANY_PATTERN) {
+      if (!seat.getAssistantId().equals(GenericDAO.ANY_PATTERN)) {
         prep.setString(hasSpace ? 6 : 5, seat.getAssistantId());
       }
 
