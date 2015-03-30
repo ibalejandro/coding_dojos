@@ -87,6 +87,12 @@ public class ConferencesController {
   
   public void showConferenceDetails(Conference clickedConference) {
     conference = clickedConference;
+    try {
+      context = FacesContext.getCurrentInstance();
+      context.getExternalContext().redirect("show_conference.jsf");
+    } catch (IOException ex) {
+      showMessage("Error", "An error has ocurred");
+    }
   }
   
   public Conference getConference() {

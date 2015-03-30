@@ -2,9 +2,7 @@ package co.edu.eafit.conferre.business.seats;
 
 import java.util.List;
 
-import co.edu.eafit.conferre.business.conferences.FindConferenceUseCase;
 import co.edu.eafit.conferre.data.base.TransferObjectList;
-import co.edu.eafit.conferre.data.to.ConferenceTO;
 import co.edu.eafit.conferre.data.to.SeatTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 

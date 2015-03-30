@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+  <center>
+    <h1>Información de conferencia</h1>
+  </center>
+  <h:form id="form">
+    <p:growl id="msgs" showDetail="true" />
+    <table>
+      <tr>
+        <td>
+          <b><p:outputLabel value="Nombre o título " /></b>
+        </td>
+        <td>
+          <h:outputText value="#{conferencesController.conference.name}"
+                       style="width: 100%;"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b><p:outputLabel value="Conferencista " /></b>
+        </td>
+        <td>
+          <h:outputText value="#{conferencesController.conference.lecturerName}"
+                       style="width: 100%;"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b><p:outputLabel value="Tipo " /></b>
+        </td>
+        <td>
+          <h:outputText value="#{conferencesController.conference.type}"
+                         style="width: 100%;"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b><p:outputLabel value="Fecha " /></b>
+        </td>
+        <td>
+          <h:outputText value="#{conferencesController.conference.date}" >
+              <f:convertDateTime pattern="dd-MMM-yyyy" />
+          </h:outputText>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b><p:outputLabel value="Cupos disponibles " /></b>
+        </td>
+        <td>
+          <h:outputText value="#{conferencesController.conference.availableSeats}"/>
+        </td>
+      </tr>
+    </table>
+    <hr />
+    
+    <h3>Actuales eventos de la conferencia</h3>
+    <f:event type="preRenderView" listener="#{eventsController.retrieveConferenceEvents(conferencesController.conference.id)}"/>
+    <p:dataTable id="events_table" value="#{eventsController.events}" var="event">
+      <p:column>
+          <f:facet name="header">
+              <h:outputText value="Nombre"></h:outputText>
+          </f:facet>
+          <h:outputText value="#{event.name}"></h:outputText>
+      </p:column>
+      <p:column>
+          <f:facet name="header">
+              <h:outputText value="Tipo"></h:outputText>
+          </f:facet>
+          <h:outputText value="#{event.type}"></h:outputText>
+      </p:column>
+      <p:column>
+          <f:facet name="header">
+              <h:outputText value="Fecha"></h:outputText>
+          </f:facet>
+          <h:outputText value="#{event.description}"></h:outputText>
+      </p:column>
+      <p:column>
+          <f:facet name="header">
+              <h:outputText value="Descripción"></h:outputText>
+          </f:facet>
+          <h:outputText value="#{event.date}" >
+              <f:convertDateTime pattern="dd-MMM-yyyy" />
+          </h:outputText>
+      </p:column>
+      <p:column>
+          <f:facet name="header">
+              <h:outputText value="Cupos disponibles"></h:outputText>
+          </f:facet>
+          <h:outputText value="#{event.availableSeats}"/>
+      </p:column>
+    </p:dataTable>
+    
+    <br />
+    <br />
+    <br />
+    <hr />
+    <h2>Comprar boletos</h2> <p>Selecciona las sillas que deseas comprar</p>
+    <hr />
+    <p:panelGrid columns="1" layout="grid">     
+      <f:facet name="header">
+        <div style="background-color: #CC6600;">
+          <h:outputText style="color: white" value="Escenario" /> 
+        </div>
+    </f:facet>
+    </p:panelGrid>
+    
+    <f:event type="preRenderView" listener="#{seatsController.setupSeats(conferencesController.conference.availableSeats)}"/>
+    <h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+      <p:selectManyButton value="#{seatsController.selectedSeats}">
+          <f:selectItems value="#{seatsController.seats}" var="seat"
+                         itemLabel="#{seat.number}"
+                         itemValue="#{seat.id}"
+                         itemDisabled="#{seat.available}"/>
+        </p:selectManyButton>
+    </h:panelGrid>
+    <center>
+      <p:commandButton value="Agregar" icon="ui-icon-check"
+                       update="msgs,events_table,form"
+                       action="#{seatsController.buySeats(conferencesController.conference.id, 'e66bd19d-f5c2-4d4a-9855-a2dd1867520b')}"/>
+      
+    </center>
+  </h:form>
+</h:body>
+</html>
