@@ -11,6 +11,20 @@ public class SeatTO implements TransferObject {
   private String spaceId;
   private String assistantId;
   
+  public SeatTO() {
+    
+  }
+
+  public SeatTO(String id, int number, String type, boolean available,
+                String spaceId, String assistantId) {
+    this.id = id;
+    this.number = number;
+    this.type = type;
+    this.available = available;
+    this.spaceId = spaceId;
+    this.assistantId = assistantId;
+  }
+  
   public String getId() {
     return id;
   }

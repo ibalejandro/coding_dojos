@@ -1,7 +1,7 @@
 package co.edu.eafit.conferre.business.conferences;
 
 import co.edu.eafit.conferre.business.base.UnitOfWork;
-import co.edu.eafit.conferre.data.base.FactoryDAO;
+import co.edu.eafit.conferre.data.base.DAOFactory;
 import co.edu.eafit.conferre.data.base.GenericDAO;
 import co.edu.eafit.conferre.data.base.TransferObject;
 import co.edu.eafit.conferre.data.base.TransferObjectList;
@@ -16,7 +16,7 @@ public class FindConferenceUseCase implements UnitOfWork {
   public TransferObject execute(TransferObject params) throws UnitOfWorkException {
     ConferenceTO conference = (ConferenceTO) params;
     validateConferenceData(conference);
-    ConferenceDAO conferenceDAO = FactoryDAO.createConferenceDAO();
+    ConferenceDAO conferenceDAO = DAOFactory.createConferenceDAO();
     TransferObjectList resultList;
     try {
       resultList = conferenceDAO.retrieve(conference);

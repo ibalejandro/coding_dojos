@@ -1,7 +1,7 @@
 package co.edu.eafit.conferre.business.assistants;
 
 import co.edu.eafit.conferre.business.base.UnitOfWork;
-import co.edu.eafit.conferre.data.base.FactoryDAO;
+import co.edu.eafit.conferre.data.base.DAOFactory;
 import co.edu.eafit.conferre.data.base.TransferObject;
 import co.edu.eafit.conferre.data.dao.AssistantDAO;
 import co.edu.eafit.conferre.data.to.AssistantTO;
@@ -14,7 +14,7 @@ public class CreateAssistantUseCase implements UnitOfWork {
   public TransferObject execute(TransferObject params) throws UnitOfWorkException {
     AssistantTO assistant = (AssistantTO) params;
     validateAssistantData(assistant);
-    AssistantDAO assistantDAO = FactoryDAO.createAssistantDAO();
+    AssistantDAO assistantDAO = DAOFactory.createAssistantDAO();
     AssistantTO result;
     try {
       result = (AssistantTO) assistantDAO.create(assistant);

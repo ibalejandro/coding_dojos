@@ -6,7 +6,7 @@
 package co.edu.eafit.conferre.business.events;
 
 import co.edu.eafit.conferre.business.base.UnitOfWork;
-import co.edu.eafit.conferre.data.base.FactoryDAO;
+import co.edu.eafit.conferre.data.base.DAOFactory;
 import co.edu.eafit.conferre.data.base.GenericDAO;
 import co.edu.eafit.conferre.data.base.TransferObject;
 import co.edu.eafit.conferre.data.base.TransferObjectList;
@@ -23,7 +23,7 @@ public class AssignSpaceUseCase implements UnitOfWork {
     SpaceTO space = (SpaceTO) params;
     String eventId = space.getEventId();
     space = validateSpaceData(space);
-    SpaceDAO spaceDAO = FactoryDAO.createSpaceDAO(FactoryDAO.SOURCE_DB);
+    SpaceDAO spaceDAO = DAOFactory.createSpaceDAO(DAOFactory.SOURCE_DB);
     SpaceTO result;
     try {
       TransferObjectList foundSpaces = spaceDAO.retrieve(space);

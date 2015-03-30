@@ -1,6 +1,9 @@
 package co.edu.eafit.conferre.data.sa;
 
+import co.edu.eafit.conferre.data.to.PaymentTO;
+import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
+
 public interface PaymentsProxy {
   
-  public boolean payComission(double amount);
+  public boolean payComission(PaymentTO payment) throws UnitOfWorkException;
 }

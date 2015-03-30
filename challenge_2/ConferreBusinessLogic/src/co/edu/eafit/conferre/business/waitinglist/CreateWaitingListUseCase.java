@@ -1,7 +1,7 @@
 package co.edu.eafit.conferre.business.waitinglist;
 
 import co.edu.eafit.conferre.business.base.UnitOfWork;
-import co.edu.eafit.conferre.data.base.FactoryDAO;
+import co.edu.eafit.conferre.data.base.DAOFactory;
 import co.edu.eafit.conferre.data.base.TransferObject;
 import co.edu.eafit.conferre.data.dao.WaitingListDAO;
 import co.edu.eafit.conferre.data.to.WaitingListTO;
@@ -14,7 +14,7 @@ public class CreateWaitingListUseCase implements UnitOfWork {
   public TransferObject execute(TransferObject params) throws UnitOfWorkException {
     WaitingListTO waitingList = (WaitingListTO) params;
     validateWaitingListData(waitingList);
-    WaitingListDAO waitingListDAO = FactoryDAO.createWaitingListDAO();
+    WaitingListDAO waitingListDAO = DAOFactory.createWaitingListDAO();
     WaitingListTO result;
     try {
       result = (WaitingListTO) waitingListDAO.create(waitingList);

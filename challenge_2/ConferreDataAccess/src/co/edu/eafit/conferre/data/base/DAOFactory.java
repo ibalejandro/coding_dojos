@@ -18,7 +18,7 @@ import co.edu.eafit.conferre.data.dao.SpaceDBDAO;
 import co.edu.eafit.conferre.data.dao.SpaceTXTDAO;
 import co.edu.eafit.conferre.data.dao.WaitingListDAO;
 
-public class FactoryDAO {
+public class DAOFactory {
   
   private static Connection conn = null;
   private static File file = null;

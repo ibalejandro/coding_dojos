@@ -1,7 +1,7 @@
 package co.edu.eafit.conferre.business.spaces;
 
 import co.edu.eafit.conferre.business.base.UnitOfWork;
-import co.edu.eafit.conferre.data.base.FactoryDAO;
+import co.edu.eafit.conferre.data.base.DAOFactory;
 import co.edu.eafit.conferre.data.base.GenericDAO;
 import co.edu.eafit.conferre.data.base.TransferObject;
 import co.edu.eafit.conferre.data.base.TransferObjectList;
@@ -14,7 +14,7 @@ public class FindSpacesUseCase implements UnitOfWork {
   
   @Override
   public TransferObject execute(TransferObject params) throws UnitOfWorkException {
-    SpaceDAO spaceDAO = FactoryDAO.createSpaceDAO(2);
+    SpaceDAO spaceDAO = DAOFactory.createSpaceDAO(2);
     TransferObjectList resultList;
     SpaceTO space = validateSpaceParam();
     try {

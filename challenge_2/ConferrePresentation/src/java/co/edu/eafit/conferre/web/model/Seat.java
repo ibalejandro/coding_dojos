@@ -16,6 +16,19 @@ public class Seat implements Comparable<Seat> {
   private String spaceId;
   private String assistantId;
   
+  public Seat() {
+    
+  }
+  
+  public Seat(Seat copy) {
+    id = copy.getId();
+    number = copy.getNumber();
+    type = copy.getType();
+    available = copy.isAvailable();
+    spaceId = copy.getSpaceId();
+    assistantId = copy.getAssistantId();
+  }
+  
   @Override
   public int compareTo(Seat than) {
     int num1 = this.getNumber();
@@ -59,7 +72,10 @@ public class Seat implements Comparable<Seat> {
   public void setAssistantId(String assistantId) {
     this.assistantId = assistantId;
   }
-
+  public String getShowType() {
+    return type.equals("VIP") ? type : "REG";
+  }
+  
   public void update(SeatTO seat) {
     id = seat.getId();
     number = seat.getNumber();

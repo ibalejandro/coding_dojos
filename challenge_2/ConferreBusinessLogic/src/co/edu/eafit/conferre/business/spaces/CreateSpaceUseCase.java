@@ -1,7 +1,7 @@
 package co.edu.eafit.conferre.business.spaces;
 
 import co.edu.eafit.conferre.business.base.UnitOfWork;
-import co.edu.eafit.conferre.data.base.FactoryDAO;
+import co.edu.eafit.conferre.data.base.DAOFactory;
 import co.edu.eafit.conferre.data.base.TransferObject;
 import co.edu.eafit.conferre.data.dao.SpaceDAO;
 import co.edu.eafit.conferre.data.to.SpaceTO;
@@ -16,7 +16,7 @@ public class CreateSpaceUseCase implements UnitOfWork {
   public TransferObject execute(TransferObject params) throws UnitOfWorkException {
     SpaceTO space = (SpaceTO) params;
     validateSpaceData(space);
-    SpaceDAO spaceDAO = FactoryDAO.createSpaceDAO(FactoryDAO.SOURCE_DB);
+    SpaceDAO spaceDAO = DAOFactory.createSpaceDAO(DAOFactory.SOURCE_DB);
     SpaceTO result;
     try {
       result = (SpaceTO) spaceDAO.create(space);

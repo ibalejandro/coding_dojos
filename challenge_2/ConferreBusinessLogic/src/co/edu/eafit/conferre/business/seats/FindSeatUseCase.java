@@ -1,7 +1,7 @@
 package co.edu.eafit.conferre.business.seats;
 
 import co.edu.eafit.conferre.business.base.UnitOfWork;
-import co.edu.eafit.conferre.data.base.FactoryDAO;
+import co.edu.eafit.conferre.data.base.DAOFactory;
 import co.edu.eafit.conferre.data.base.GenericDAO;
 import co.edu.eafit.conferre.data.base.TransferObject;
 import co.edu.eafit.conferre.data.base.TransferObjectList;
@@ -16,7 +16,7 @@ public class FindSeatUseCase implements UnitOfWork {
   public TransferObject execute(TransferObject params) throws UnitOfWorkException {
     SeatTO seat = (SeatTO) params;
     validateSeatData(seat);
-    SeatDAO seatDAO = FactoryDAO.createSeatDAO();
+    SeatDAO seatDAO = DAOFactory.createSeatDAO();
     TransferObjectList resultList;
     try {
       resultList = seatDAO.retrieve(seat);

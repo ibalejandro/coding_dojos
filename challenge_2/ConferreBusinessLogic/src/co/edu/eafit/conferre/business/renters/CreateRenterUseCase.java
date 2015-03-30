@@ -1,7 +1,7 @@
 package co.edu.eafit.conferre.business.renters;
 
 import co.edu.eafit.conferre.business.base.UnitOfWork;
-import co.edu.eafit.conferre.data.base.FactoryDAO;
+import co.edu.eafit.conferre.data.base.DAOFactory;
 import co.edu.eafit.conferre.data.base.TransferObject;
 import co.edu.eafit.conferre.data.dao.RenterDAO;
 import co.edu.eafit.conferre.data.to.RenterTO;
@@ -14,7 +14,7 @@ public class CreateRenterUseCase implements UnitOfWork {
   public TransferObject execute(TransferObject params) throws UnitOfWorkException {
     RenterTO renter = (RenterTO) params;
     validateRenterData(renter);
-    RenterDAO renterDAO = FactoryDAO.createRenterDAO();
+    RenterDAO renterDAO = DAOFactory.createRenterDAO();
     RenterTO result;
     try {
       result = (RenterTO) renterDAO.create(renter);

@@ -46,4 +46,22 @@ public class RestSeatFacade implements SeatFacade {
     }
     return result;
   }
+  
+  @Override
+  //@Path("/update")
+  //@POST
+  //@Consumes("application/json")
+  //@Produces("application/json")
+  //Jersey y nosequé json
+  public SeatTO reserve(SeatTO params) throws UnitOfWorkException {
+    ReserveSeatUseCase useCase = new ReserveSeatUseCase();
+    SeatTO result;
+    try {
+      result = (SeatTO) useCase.execute(params);
+    }
+    catch (UnitOfWorkException e) {
+      throw e;
+    }
+    return result;
+  }
 }

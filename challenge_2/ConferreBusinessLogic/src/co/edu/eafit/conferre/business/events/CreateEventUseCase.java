@@ -1,7 +1,7 @@
 package co.edu.eafit.conferre.business.events;
 
 import co.edu.eafit.conferre.business.base.UnitOfWork;
-import co.edu.eafit.conferre.data.base.FactoryDAO;
+import co.edu.eafit.conferre.data.base.DAOFactory;
 import co.edu.eafit.conferre.data.base.TransferObject;
 import co.edu.eafit.conferre.data.dao.EventDAO;
 import co.edu.eafit.conferre.data.to.EventTO;
@@ -14,7 +14,7 @@ public class CreateEventUseCase implements UnitOfWork {
   public TransferObject execute(TransferObject params) throws UnitOfWorkException {
     EventTO event = (EventTO) params;
     validateEventData(event);
-    EventDAO eventDAO = FactoryDAO.createEventDAO();
+    EventDAO eventDAO = DAOFactory.createEventDAO();
     EventTO result;
     try {
       result = (EventTO) eventDAO.create(event);

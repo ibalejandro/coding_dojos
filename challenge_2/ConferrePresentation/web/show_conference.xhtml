@@ -102,7 +102,10 @@
     <br />
     <br />
     <hr />
-    <h2>Comprar boletos</h2> <p>Selecciona las sillas que deseas comprar</p>
+    <h2>Comprar boletos</h2> <p>Selecciona las sillas que deseas comprar </p>
+    <br />
+    <b>REG: </b>Silla regular ($10.000)
+    <b>VIP: </b>Silla preferencial ($15.000)
     <hr />
     <p:panelGrid columns="1" layout="grid">     
       <f:facet name="header">
@@ -114,19 +117,44 @@
     
     <f:event type="preRenderView" listener="#{seatsController.setupSeats(conferencesController.conference.availableSeats)}"/>
     <h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
-      <p:selectManyButton value="#{seatsController.selectedSeats}">
+      <p:selectManyButton id="seats_diagram" value="#{seatsController.selectedSeats}">
           <f:selectItems value="#{seatsController.seats}" var="seat"
-                         itemLabel="#{seat.number}"
+                         itemLabel="#{seat.showType} - #{seat.number}"
                          itemValue="#{seat.id}"
-                         itemDisabled="#{seat.available}"/>
+                         itemDisabled="#{!seat.available}"/>
         </p:selectManyButton>
     </h:panelGrid>
     <center>
-      <p:commandButton value="Agregar" icon="ui-icon-check"
-                       update="msgs,events_table,form"
-                       action="#{seatsController.buySeats(conferencesController.conference.id, 'e66bd19d-f5c2-4d4a-9855-a2dd1867520b')}"/>
+      <p:commandButton value="Comprar sillas" icon="fa fa-credit-card"
+                       update="msgs,display,value" oncomplete="PF('dlg').show()"
+                       action="#{seatsController.buySeats('e66bd19d-f5c2-4d4a-9855-a2dd1867520b')}"/>
       
     </center>
+    
+    <p:dialog header="Sillas a comprar" modal="true" showEffect="bounce"
+              widgetVar="dlg" resizable="false">
+      <p:dataList id="display" value="#{seatsController.seatsToBeBought}"
+                  var="selected" emptyMessage="No se seleccionaron sillas">
+        <h:outputText value="#{selected.number} (#{selected.type})"
+                      style="font-weight: bold" />
+      </p:dataList>
+      <br />
+      <h:outputText id="value"
+                    value="Valor a pagar: $ #{seatsController.amountToPay}"/>  
+      <br />
+      <br />
+      <p:selectOneMenu value="#{paymentsController.payment.paymentEntity}"
+                       style="width: 100%;">
+        <f:selectItem itemLabel="PayPal" itemValue="1" />
+        <f:selectItem itemLabel="PlaceToPay" itemValue="2" />
+      </p:selectOneMenu>
+      <br />
+      <br />
+      <p:commandButton value="Confirmar pago" icon="fa fa-check"
+                       update="msgs,seats_diagram"
+                       action="#{paymentsController.confirmPayment(seatsController.amountToPay)}"
+                       oncomplete="PF('dlg').hide()"/>
+    </p:dialog>
   </h:form>
 </h:body>
 </html>
