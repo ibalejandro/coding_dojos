@@ -5,4 +5,5 @@ import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 
 public interface RenterFacade {
   public RenterTO createRenter(RenterTO renter) throws UnitOfWorkException;
+  public RenterTO authenticate(RenterTO renter) throws UnitOfWorkException;
 }

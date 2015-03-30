@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+  <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+  <div style="display: table; position: absolute; height: 100%; width: 100%;">
+  <div style="display: table-cell; vertical-align: middle;">
+  <div style="margin-left: auto; margin-right: auto; width: 200px;">
+    <h:form>
+        <h:panelGrid columns="2" cellpadding="5">
+          <h:outputLabel value="Correo electrónico" />
+          <p:inputText value="#{rentersController.renter.email}" required="true" label="email" />
+
+          <h:outputLabel value="Contraseña " />
+          <p:password value="#{rentersController.renter.password}" required="true" label="password" />
+
+          <f:facet name="footer">
+            <p:commandButton value="Ingresar" update="growl"
+                             actionListener="#{rentersController.login}"/>
+          </f:facet>  
+        </h:panelGrid>
+    </h:form>
+  </div>
+  </div>
+  </div>
+</h:body>
+</html>

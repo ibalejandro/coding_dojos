@@ -51,24 +51,35 @@ public class RenterDAO implements GenericDAO {
     RenterTO renter = null;
     TransferObjectList result = new TransferObjectList();
     PreparedStatement prep;
+    
     try {
       renter = (RenterTO) params;
       prep = conn
-          .prepareStatement("SELECT * FROM renters WHERE name = ?"
-                          + "AND identification = ? AND phone_number = ? AND "
-                          + "email = ? AND gender = ?");
-      prep.setString(1, renter.getName());
-      prep.setString(2, renter.getIdentification());
-      prep.setString(3, renter.getPhoneNumber());
-      prep.setString(4, renter.getEmail());
-      prep.setBoolean(5, renter.isMale());
+          .prepareStatement("SELECT * "
+                          + "FROM renters "
+                          + "WHERE id LIKE ? AND "
+                                + "name LIKE ? AND "
+                                + "identification LIKE ? AND "
+                                + "phone_number LIKE ? AND "
+                                + "email LIKE ? AND "
+                                + "password LIKE ?"); /* AND */
+                                /*+ "gender LIKE ?");*/
+      prep.setString(1, renter.getId());
+      prep.setString(2, renter.getName());
+      prep.setString(3, renter.getIdentification());
+      prep.setString(4, renter.getPhoneNumber());
+      prep.setString(5, renter.getEmail());
+      prep.setString(6, renter.getPassword());
+      //prep.setBoolean(6, renter.isMale());
       ResultSet resultSet = prep.executeQuery();
       while (resultSet.next()) {
         RenterTO row = new RenterTO();
+        row.setId(resultSet.getString("id"));
         row.setName(resultSet.getString("name"));
         row.setIdentification(resultSet.getString("identification"));
         row.setPhoneNumber(resultSet.getString("phone_number"));
         row.setEmail(resultSet.getString("email"));
+        row.setPassword(resultSet.getString("password"));
         row.setMale(resultSet.getBoolean("gender"));
         result.add(row);
       }

@@ -5,13 +5,12 @@
  */
 package co.edu.eafit.conferre.web.controllers;
 
-import co.edu.eafit.conferre.business.conferences.RestConferenceFacade;
-import co.edu.eafit.conferre.data.to.ConferenceTO;
+import co.edu.eafit.conferre.business.renters.RestRenterFacade;
+import co.edu.eafit.conferre.data.to.RenterTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 import co.edu.eafit.conferre.support.exceptions.ValidationException;
-import co.edu.eafit.conferre.web.model.Conference;
+import co.edu.eafit.conferre.web.model.Renter;
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -19,32 +18,35 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import org.primefaces.context.RequestContext;
 
 @ManagedBean
 @SessionScoped
-public class ConferencesController {
-  private Conference conference;
-  private RestConferenceFacade restConferenceFacade;
+public class RentersController {
+  private Renter renter;
+  private Renter loggedRenter;
+  private RestRenterFacade restRenterFacade;
   private FacesContext context;
   
   @PostConstruct
   public void init() {
-    conference = new Conference();
-    restConferenceFacade = new RestConferenceFacade();
+    renter = new Renter();
+    restRenterFacade = new RestRenterFacade();
   }
   
-  public void click(String renterId) {
-    conference.setRenterId(renterId);
-    ConferenceTO newConference = new ConferenceTO(
-            conference.getId(), conference.getName(),
-            conference.getLecturerName(), conference.getType(),
-            conference.getDate(), conference.getAvailableSeats(),
-            conference.getRenterId());
-
-    ConferenceTO result;
+  public void login() {
+    RenterTO renterTO = new RenterTO(renter.getId(), renter.getName(),
+            renter.getIdentification(), renter.getPhoneNumber(),
+            renter.getEmail(), renter.getPassword(), renter.isMale());
     try {
-      result = restConferenceFacade.createConference(newConference);
+      System.out.println("email: " + renterTO.getEmail());
+      System.out.println("password: " + renterTO.getPassword());
+      RenterTO renterResult = restRenterFacade.authenticate(renterTO);
+      if (renterResult == null) {
+        showMessage("Autenticación", "El correo electrónico o contraseña "
+                + "son inválidos");
+        return;
+      }
+      renter.update(renterResult);
     }
     catch (UnitOfWorkException ex) {
       System.err.println("Error: " + ex.getMessage());
@@ -55,24 +57,21 @@ public class ConferencesController {
       showMessage("Error", message);
       return;
     }
-    
-    conference.update(result);
-    //RequestContext requestContext = RequestContext.getCurrentInstance();
-    //requestContext.update("form:display");
-    //requestContext.execute("PF('dlg').show()");
     try {
       context = FacesContext.getCurrentInstance();
-      context.getExternalContext().redirect("create_event.jsf");
-    } catch (IOException ex) {
+      context.getExternalContext().redirect("create_conference.jsf");
+    }
+    catch (IOException ex) {
       showMessage("Error", "An error has ocurred");
     }
   }
-  
-  public Conference getConference() {
-    return conference;
+
+  public Renter getRenter() {
+    return renter;
   }
-  public void setConference(Conference conference) {
-    this.conference = conference;
+
+  public void setRenter(Renter renter) {
+    this.renter = renter;
   }
   
   private void showMessage(String title, String content) {
