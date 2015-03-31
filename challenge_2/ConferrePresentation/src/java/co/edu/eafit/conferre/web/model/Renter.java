@@ -5,7 +5,7 @@
  */
 package co.edu.eafit.conferre.web.model;
 
-import co.edu.eafit.conferre.data.to.RenterTO;
+import co.edu.eafit.conferre.support.to.RenterTO;
 
 public class Renter {
   private String id;

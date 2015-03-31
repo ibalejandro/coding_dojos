@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.edu.eafit.conferre.data.base.TransferObject;
-import co.edu.eafit.conferre.data.base.TransferObjectList;
-import co.edu.eafit.conferre.data.to.SpaceTO;
+import co.edu.eafit.conferre.support.base.TransferObject;
+import co.edu.eafit.conferre.support.base.TransferObjectList;
+import co.edu.eafit.conferre.support.to.SpaceTO;
 
 public class SpaceTXTDAO implements SpaceDAO {
   

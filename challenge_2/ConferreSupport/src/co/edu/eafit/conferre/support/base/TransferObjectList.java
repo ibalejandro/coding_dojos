@@ -1,4 +1,4 @@
-package co.edu.eafit.conferre.data.base;
+package co.edu.eafit.conferre.support.base;
 
 import java.util.ArrayList;
 import java.util.List;

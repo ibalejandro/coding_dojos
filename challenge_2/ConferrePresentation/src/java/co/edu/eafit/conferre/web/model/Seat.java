@@ -5,7 +5,7 @@
  */
 package co.edu.eafit.conferre.web.model;
 
-import co.edu.eafit.conferre.data.to.SeatTO;
+import co.edu.eafit.conferre.support.to.SeatTO;
 
 public class Seat implements Comparable<Seat> {
   

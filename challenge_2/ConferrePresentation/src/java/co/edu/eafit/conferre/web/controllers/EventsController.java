@@ -6,8 +6,8 @@
 package co.edu.eafit.conferre.web.controllers;
 
 import co.edu.eafit.conferre.business.events.RestEventFacade;
-import co.edu.eafit.conferre.data.to.EventTO;
-import co.edu.eafit.conferre.data.to.SpaceTO;
+import co.edu.eafit.conferre.support.to.EventTO;
+import co.edu.eafit.conferre.support.to.SpaceTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 import co.edu.eafit.conferre.support.exceptions.ValidationException;
 import co.edu.eafit.conferre.web.model.Conference;

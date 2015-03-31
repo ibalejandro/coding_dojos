@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package co.edu.eafit.conferre.web.controllers;
-import co.edu.eafit.conferre.business.conferences.RestConferenceFacade;
-import co.edu.eafit.conferre.data.to.SpaceTO;
+import co.edu.eafit.conferre.business.spaces.RestSpaceFacade;
+import co.edu.eafit.conferre.support.to.SpaceTO;
 import co.edu.eafit.conferre.web.model.Space;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import javax.faces.bean.SessionScoped;
 public class SpacesController {
   private List<Space> spaces;
   private Space space;
-  private RestConferenceFacade restConferenceFacade;
+  private RestSpaceFacade restConferenceFacade;
   
   @PostConstruct
   public void init() {
@@ -26,7 +26,7 @@ public class SpacesController {
     space = new Space();
     List<SpaceTO> spacesTransfer;
     try {
-      restConferenceFacade = new RestConferenceFacade();
+      restConferenceFacade = new RestSpaceFacade();
       spacesTransfer = restConferenceFacade.findEmptySpaces();
     }
     catch (Exception e) {

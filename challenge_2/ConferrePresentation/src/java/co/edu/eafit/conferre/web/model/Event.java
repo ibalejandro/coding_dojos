@@ -5,7 +5,7 @@
  */
 package co.edu.eafit.conferre.web.model;
 
-import co.edu.eafit.conferre.data.to.EventTO;
+import co.edu.eafit.conferre.support.to.EventTO;
 import java.util.Date;
 
 public class Event {

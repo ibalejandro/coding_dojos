@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.eafit.conferre.data.to;
+package co.edu.eafit.conferre.support.to;
 
-import co.edu.eafit.conferre.data.base.TransferObject;
+import co.edu.eafit.conferre.support.base.TransferObject;
 
 public class PaymentTO implements TransferObject {
   private double amount;

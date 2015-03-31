@@ -6,10 +6,10 @@
 package co.edu.eafit.conferre.business.payments;
 
 import co.edu.eafit.conferre.business.base.UnitOfWork;
-import co.edu.eafit.conferre.data.base.TransferObject;
+import co.edu.eafit.conferre.support.base.TransferObject;
 import co.edu.eafit.conferre.data.sa.AdapterFactory;
 import co.edu.eafit.conferre.data.sa.PaymentsProxy;
-import co.edu.eafit.conferre.data.to.PaymentTO;
+import co.edu.eafit.conferre.support.to.PaymentTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 import co.edu.eafit.conferre.support.exceptions.ValidationException;
 

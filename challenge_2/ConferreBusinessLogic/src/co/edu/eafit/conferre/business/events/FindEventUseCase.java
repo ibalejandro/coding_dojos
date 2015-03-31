@@ -3,10 +3,10 @@ package co.edu.eafit.conferre.business.events;
 import co.edu.eafit.conferre.business.base.UnitOfWork;
 import co.edu.eafit.conferre.data.base.DAOFactory;
 import co.edu.eafit.conferre.data.base.GenericDAO;
-import co.edu.eafit.conferre.data.base.TransferObject;
-import co.edu.eafit.conferre.data.base.TransferObjectList;
+import co.edu.eafit.conferre.support.base.TransferObject;
+import co.edu.eafit.conferre.support.base.TransferObjectList;
 import co.edu.eafit.conferre.data.dao.EventDAO;
-import co.edu.eafit.conferre.data.to.EventTO;
+import co.edu.eafit.conferre.support.to.EventTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 import co.edu.eafit.conferre.support.exceptions.ValidationException;
 

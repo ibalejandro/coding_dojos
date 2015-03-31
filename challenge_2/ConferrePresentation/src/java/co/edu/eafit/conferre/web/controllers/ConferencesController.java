@@ -6,7 +6,7 @@
 package co.edu.eafit.conferre.web.controllers;
 
 import co.edu.eafit.conferre.business.conferences.RestConferenceFacade;
-import co.edu.eafit.conferre.data.to.ConferenceTO;
+import co.edu.eafit.conferre.support.to.ConferenceTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 import co.edu.eafit.conferre.support.exceptions.ValidationException;
 import co.edu.eafit.conferre.web.model.Conference;

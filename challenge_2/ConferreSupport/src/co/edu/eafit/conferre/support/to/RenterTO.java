@@ -1,8 +1,8 @@
-package co.edu.eafit.conferre.data.to;
+package co.edu.eafit.conferre.support.to;
 
-import co.edu.eafit.conferre.data.base.TransferObject;
+import co.edu.eafit.conferre.support.base.TransferObject;
 
-public class AssistantTO implements TransferObject {
+public class RenterTO implements TransferObject {
   
   private String id;
   private String name;
@@ -12,11 +12,11 @@ public class AssistantTO implements TransferObject {
   private String password;
   private boolean gender;
   
-  public AssistantTO() {
+  public RenterTO() {
     
   }
 
-  public AssistantTO(String id, String name, String identification,
+  public RenterTO(String id, String name, String identification,
           String phoneNumber, String email, String password, boolean gender) {
     this.id = id;
     this.name = name;
@@ -26,7 +26,7 @@ public class AssistantTO implements TransferObject {
     this.password = password;
     this.gender = gender;
   }
-  
+
   public String getId() {
     return id;
   }
@@ -57,16 +57,16 @@ public class AssistantTO implements TransferObject {
   public void setEmail(String email) {
     this.email = email;
   }
-  public String getPassword() {
-    return password;
-  }
-  public void setPassword(String password) {
-    this.password = password;
-  }
   public boolean isMale() {
     return gender;
   }
   public void setMale(boolean gender) {
     this.gender = gender;
+  }
+  public String getPassword() {
+    return password;
+  }
+  public void setPassword(String password) {
+    this.password = password;
   }
 }

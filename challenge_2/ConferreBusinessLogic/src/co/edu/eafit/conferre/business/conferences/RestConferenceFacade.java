@@ -3,9 +3,9 @@ package co.edu.eafit.conferre.business.conferences;
 import java.util.List;
 
 import co.edu.eafit.conferre.business.spaces.FindSpacesUseCase;
-import co.edu.eafit.conferre.data.base.TransferObjectList;
-import co.edu.eafit.conferre.data.to.ConferenceTO;
-import co.edu.eafit.conferre.data.to.SpaceTO;
+import co.edu.eafit.conferre.support.base.TransferObjectList;
+import co.edu.eafit.conferre.support.to.ConferenceTO;
+import co.edu.eafit.conferre.support.to.SpaceTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 
 //@Path("/conferences")
@@ -51,23 +51,5 @@ public class RestConferenceFacade implements ConferenceFacade {
     return result;
   }
   
-  @Override
-  //@Path("/emptySpaces")
-  //@POST
-  //@Consumes("application/json")
-  //@Produces("application/json")
-  //Jersey y nosequé json
-  public List<SpaceTO> findEmptySpaces() throws UnitOfWorkException {
-    FindSpacesUseCase useCase = new FindSpacesUseCase();
-    List<SpaceTO> result;
-    try {
-      TransferObjectList conferencesResult = 
-          (TransferObjectList) useCase.execute(null); 
-      result = (List<SpaceTO>)(List<?>) conferencesResult.getList();
-    }
-    catch (UnitOfWorkException e) {
-      throw e;
-    }
-    return result;
-  }
+  
 }

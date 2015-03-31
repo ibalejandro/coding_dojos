@@ -1,6 +1,6 @@
-package co.edu.eafit.conferre.data.to;
+package co.edu.eafit.conferre.support.to;
 
-import co.edu.eafit.conferre.data.base.TransferObject;
+import co.edu.eafit.conferre.support.base.TransferObject;
 
 public class SeatTO implements TransferObject {
   

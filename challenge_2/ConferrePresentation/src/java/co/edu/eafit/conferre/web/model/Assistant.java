@@ -5,7 +5,7 @@
  */
 package co.edu.eafit.conferre.web.model;
 
-import co.edu.eafit.conferre.data.to.AssistantTO;
+import co.edu.eafit.conferre.support.to.AssistantTO;
 
 public class Assistant {
   

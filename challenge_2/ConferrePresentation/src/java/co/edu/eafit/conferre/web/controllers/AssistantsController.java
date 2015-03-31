@@ -6,7 +6,7 @@
 package co.edu.eafit.conferre.web.controllers;
 
 import co.edu.eafit.conferre.business.assistants.RestAssistantFacade;
-import co.edu.eafit.conferre.data.to.AssistantTO;
+import co.edu.eafit.conferre.support.to.AssistantTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 import co.edu.eafit.conferre.support.exceptions.ValidationException;
 import co.edu.eafit.conferre.web.model.Assistant;

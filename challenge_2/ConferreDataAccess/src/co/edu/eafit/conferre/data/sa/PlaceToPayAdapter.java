@@ -1,6 +1,6 @@
 package co.edu.eafit.conferre.data.sa;
 
-import co.edu.eafit.conferre.data.to.PaymentTO;
+import co.edu.eafit.conferre.support.to.PaymentTO;
 import co.edu.eafit.conferre.support.exceptions.TransactionException;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 

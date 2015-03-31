@@ -5,7 +5,7 @@
  */
 package co.edu.eafit.conferre.web.model;
 
-import co.edu.eafit.conferre.data.to.ConferenceTO;
+import co.edu.eafit.conferre.support.to.ConferenceTO;
 import java.util.Date;
 
 public class Conference {

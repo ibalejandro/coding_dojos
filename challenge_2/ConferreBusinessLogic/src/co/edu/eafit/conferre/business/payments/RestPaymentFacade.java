@@ -5,7 +5,7 @@
  */
 package co.edu.eafit.conferre.business.payments;
 
-import co.edu.eafit.conferre.data.to.PaymentTO;
+import co.edu.eafit.conferre.support.to.PaymentTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 
 public class RestPaymentFacade implements PaymentFacade {

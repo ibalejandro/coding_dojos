@@ -6,7 +6,7 @@
 package co.edu.eafit.conferre.web.controllers;
 
 import co.edu.eafit.conferre.business.payments.RestPaymentFacade;
-import co.edu.eafit.conferre.data.to.PaymentTO;
+import co.edu.eafit.conferre.support.to.PaymentTO;
 import co.edu.eafit.conferre.support.exceptions.TransactionException;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 import co.edu.eafit.conferre.support.exceptions.ValidationException;

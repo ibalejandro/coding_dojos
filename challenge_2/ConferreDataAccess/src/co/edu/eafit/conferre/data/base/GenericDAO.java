@@ -1,5 +1,8 @@
 package co.edu.eafit.conferre.data.base;
 
+import co.edu.eafit.conferre.support.base.TransferObject;
+import co.edu.eafit.conferre.support.base.TransferObjectList;
+
 public interface GenericDAO {
   
   public static final String ANY_PATTERN = "%";

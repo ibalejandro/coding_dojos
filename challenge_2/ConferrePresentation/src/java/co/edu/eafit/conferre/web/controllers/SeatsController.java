@@ -6,7 +6,7 @@
 package co.edu.eafit.conferre.web.controllers;
 
 import co.edu.eafit.conferre.business.seats.RestSeatFacade;
-import co.edu.eafit.conferre.data.to.SeatTO;
+import co.edu.eafit.conferre.support.to.SeatTO;
 import co.edu.eafit.conferre.support.exceptions.TransactionException;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 import co.edu.eafit.conferre.support.exceptions.ValidationException;

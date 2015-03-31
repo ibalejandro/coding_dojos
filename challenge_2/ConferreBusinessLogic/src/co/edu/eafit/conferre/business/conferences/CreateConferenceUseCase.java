@@ -2,9 +2,9 @@ package co.edu.eafit.conferre.business.conferences;
 
 import co.edu.eafit.conferre.business.base.UnitOfWork;
 import co.edu.eafit.conferre.data.base.DAOFactory;
-import co.edu.eafit.conferre.data.base.TransferObject;
+import co.edu.eafit.conferre.support.base.TransferObject;
 import co.edu.eafit.conferre.data.dao.ConferenceDAO;
-import co.edu.eafit.conferre.data.to.ConferenceTO;
+import co.edu.eafit.conferre.support.to.ConferenceTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 import co.edu.eafit.conferre.support.exceptions.ValidationException;
 

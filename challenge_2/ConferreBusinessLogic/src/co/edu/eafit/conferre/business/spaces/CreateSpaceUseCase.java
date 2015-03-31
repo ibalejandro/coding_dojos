@@ -2,9 +2,9 @@ package co.edu.eafit.conferre.business.spaces;
 
 import co.edu.eafit.conferre.business.base.UnitOfWork;
 import co.edu.eafit.conferre.data.base.DAOFactory;
-import co.edu.eafit.conferre.data.base.TransferObject;
+import co.edu.eafit.conferre.support.base.TransferObject;
 import co.edu.eafit.conferre.data.dao.SpaceDAO;
-import co.edu.eafit.conferre.data.to.SpaceTO;
+import co.edu.eafit.conferre.support.to.SpaceTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 import co.edu.eafit.conferre.support.exceptions.ValidationException;
 

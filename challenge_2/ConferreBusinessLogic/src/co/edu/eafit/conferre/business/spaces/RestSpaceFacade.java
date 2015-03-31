@@ -1,7 +1,9 @@
 package co.edu.eafit.conferre.business.spaces;
 
-import co.edu.eafit.conferre.data.to.SpaceTO;
+import co.edu.eafit.conferre.support.base.TransferObjectList;
+import co.edu.eafit.conferre.support.to.SpaceTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
+import java.util.List;
 
 public class RestSpaceFacade implements SpaceFacade {
   @Override
@@ -20,5 +22,25 @@ public class RestSpaceFacade implements SpaceFacade {
       throw e;
     }
     return spaceResult;
+  }
+  
+  @Override
+  //@Path("/emptySpaces")
+  //@POST
+  //@Consumes("application/json")
+  //@Produces("application/json")
+  //Jersey y nosequé json
+  public List<SpaceTO> findEmptySpaces() throws UnitOfWorkException {
+    FindSpacesUseCase useCase = new FindSpacesUseCase();
+    List<SpaceTO> result;
+    try {
+      TransferObjectList conferencesResult = 
+          (TransferObjectList) useCase.execute(null); 
+      result = (List<SpaceTO>)(List<?>) conferencesResult.getList();
+    }
+    catch (UnitOfWorkException e) {
+      throw e;
+    }
+    return result;
   }
 }

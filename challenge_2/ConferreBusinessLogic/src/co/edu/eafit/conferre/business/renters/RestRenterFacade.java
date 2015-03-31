@@ -1,7 +1,7 @@
 package co.edu.eafit.conferre.business.renters;
 
-import co.edu.eafit.conferre.data.base.TransferObject;
-import co.edu.eafit.conferre.data.to.RenterTO;
+import co.edu.eafit.conferre.support.base.TransferObject;
+import co.edu.eafit.conferre.support.to.RenterTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 
 public class RestRenterFacade implements RenterFacade {

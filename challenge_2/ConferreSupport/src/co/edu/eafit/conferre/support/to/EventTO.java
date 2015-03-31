@@ -1,8 +1,8 @@
-package co.edu.eafit.conferre.data.to;
+package co.edu.eafit.conferre.support.to;
 
 import java.util.Date;
 
-import co.edu.eafit.conferre.data.base.TransferObject;
+import co.edu.eafit.conferre.support.base.TransferObject;
 
 public class EventTO implements TransferObject {
   

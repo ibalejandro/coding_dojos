@@ -2,9 +2,9 @@ package co.edu.eafit.conferre.business.waitinglist;
 
 import co.edu.eafit.conferre.business.base.UnitOfWork;
 import co.edu.eafit.conferre.data.base.DAOFactory;
-import co.edu.eafit.conferre.data.base.TransferObject;
+import co.edu.eafit.conferre.support.base.TransferObject;
 import co.edu.eafit.conferre.data.dao.WaitingListDAO;
-import co.edu.eafit.conferre.data.to.WaitingListTO;
+import co.edu.eafit.conferre.support.to.WaitingListTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 import co.edu.eafit.conferre.support.exceptions.ValidationException;
 

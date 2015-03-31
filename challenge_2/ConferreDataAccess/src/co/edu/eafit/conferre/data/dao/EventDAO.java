@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import java.util.UUID;
 
 import co.edu.eafit.conferre.data.base.GenericDAO;
-import co.edu.eafit.conferre.data.base.TransferObject;
-import co.edu.eafit.conferre.data.base.TransferObjectList;
-import co.edu.eafit.conferre.data.to.EventTO;
+import co.edu.eafit.conferre.support.base.TransferObject;
+import co.edu.eafit.conferre.support.base.TransferObjectList;
+import co.edu.eafit.conferre.support.to.EventTO;
 
 public class EventDAO implements GenericDAO {
 

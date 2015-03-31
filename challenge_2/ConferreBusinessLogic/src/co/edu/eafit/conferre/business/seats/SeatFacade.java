@@ -2,7 +2,7 @@ package co.edu.eafit.conferre.business.seats;
 
 import java.util.List;
 
-import co.edu.eafit.conferre.data.to.SeatTO;
+import co.edu.eafit.conferre.support.to.SeatTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 
 public interface SeatFacade {

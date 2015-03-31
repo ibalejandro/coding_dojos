@@ -6,7 +6,7 @@
 package co.edu.eafit.conferre.web.controllers;
 
 import co.edu.eafit.conferre.business.renters.RestRenterFacade;
-import co.edu.eafit.conferre.data.to.RenterTO;
+import co.edu.eafit.conferre.support.to.RenterTO;
 import co.edu.eafit.conferre.support.exceptions.UnitOfWorkException;
 import co.edu.eafit.conferre.support.exceptions.ValidationException;
 import co.edu.eafit.conferre.web.model.Renter;

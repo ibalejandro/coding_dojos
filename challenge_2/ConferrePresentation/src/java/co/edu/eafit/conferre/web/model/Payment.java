@@ -5,7 +5,7 @@
  */
 package co.edu.eafit.conferre.web.model;
 
-import co.edu.eafit.conferre.data.to.PaymentTO;
+import co.edu.eafit.conferre.support.to.PaymentTO;
 
 public class Payment {
   private double amount;
