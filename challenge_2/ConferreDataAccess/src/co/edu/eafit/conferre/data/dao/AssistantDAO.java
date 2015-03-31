@@ -51,24 +51,35 @@ public class AssistantDAO implements GenericDAO {
     AssistantTO assistant = null;
     TransferObjectList result = new TransferObjectList();
     PreparedStatement prep;
+    
     try {
       assistant = (AssistantTO) params;
       prep = conn
-          .prepareStatement("SELECT * FROM assistants WHERE name = ?"
-                          + "AND identification = ? AND phone_number = ? AND "
-                          + "email = ? AND gender = ?");
-      prep.setString(1, assistant.getName());
-      prep.setString(2, assistant.getIdentification());
-      prep.setString(3, assistant.getPhoneNumber());
-      prep.setString(4, assistant.getEmail());
-      prep.setBoolean(5, assistant.isMale());
+          .prepareStatement("SELECT * "
+                          + "FROM assistants "
+                          + "WHERE id LIKE ? AND "
+                                + "name LIKE ? AND "
+                                + "identification LIKE ? AND "
+                                + "phone_number LIKE ? AND "
+                                + "email LIKE ? AND "
+                                + "password LIKE ?"); /* AND */
+                                /*+ "gender LIKE ?");*/
+      prep.setString(1, assistant.getId());
+      prep.setString(2, assistant.getName());
+      prep.setString(3, assistant.getIdentification());
+      prep.setString(4, assistant.getPhoneNumber());
+      prep.setString(5, assistant.getEmail());
+      prep.setString(6, assistant.getPassword());
+      //prep.setBoolean(6, renter.isMale());
       ResultSet resultSet = prep.executeQuery();
       while (resultSet.next()) {
         AssistantTO row = new AssistantTO();
+        row.setId(resultSet.getString("id"));
         row.setName(resultSet.getString("name"));
         row.setIdentification(resultSet.getString("identification"));
         row.setPhoneNumber(resultSet.getString("phone_number"));
         row.setEmail(resultSet.getString("email"));
+        row.setPassword(resultSet.getString("password"));
         row.setMale(resultSet.getBoolean("gender"));
         result.add(row);
       }

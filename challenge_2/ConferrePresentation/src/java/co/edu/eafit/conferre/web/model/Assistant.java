@@ -1,8 +1,13 @@
-package co.edu.eafit.conferre.data.to;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package co.edu.eafit.conferre.web.model;
 
-import co.edu.eafit.conferre.data.base.TransferObject;
+import co.edu.eafit.conferre.data.to.AssistantTO;
 
-public class AssistantTO implements TransferObject {
+public class Assistant {
   
   private String id;
   private String name;
@@ -11,21 +16,6 @@ public class AssistantTO implements TransferObject {
   private String email;
   private String password;
   private boolean gender;
-  
-  public AssistantTO() {
-    
-  }
-
-  public AssistantTO(String id, String name, String identification,
-          String phoneNumber, String email, String password, boolean gender) {
-    this.id = id;
-    this.name = name;
-    this.identification = identification;
-    this.phoneNumber = phoneNumber;
-    this.email = email;
-    this.password = password;
-    this.gender = gender;
-  }
   
   public String getId() {
     return id;
@@ -68,5 +58,15 @@ public class AssistantTO implements TransferObject {
   }
   public void setMale(boolean gender) {
     this.gender = gender;
+  }
+  
+  public void update(AssistantTO assistant) {
+    id = assistant.getId();
+    name = assistant.getName();
+    identification = assistant.getIdentification();
+    phoneNumber = assistant.getPhoneNumber();
+    email = assistant.getEmail();
+    password = assistant.getPassword();
+    gender = assistant.isMale();
   }
 }

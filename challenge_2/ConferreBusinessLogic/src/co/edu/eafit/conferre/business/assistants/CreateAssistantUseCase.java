@@ -32,5 +32,11 @@ public class CreateAssistantUseCase implements UnitOfWork {
     if (assistant.getName() == null || assistant.getName().equals("")) {
       throw new ValidationException("Assistant name can't be blank");
     }
+    if (assistant.getIdentification() == null || assistant.getIdentification().equals("")) {
+      throw new ValidationException("Assistant identification can't be blank");
+    }
+    if (assistant.getPhoneNumber() == null || assistant.getPhoneNumber().equals("")) {
+      throw new ValidationException("Assistant phone number can't be blank");
+    }
   }
 }

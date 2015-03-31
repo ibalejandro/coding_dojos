@@ -8,22 +8,24 @@
 </h:head>
 <h:body>
   <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+  <a href="renter_login.jsf">Soy inquilino</a>
   <div style="display: table; position: absolute; height: 100%; width: 100%;">
   <div style="display: table-cell; vertical-align: middle;">
-  <div style="margin-left: auto; margin-right: auto; width: 500px;">
+  <div style="margin-left: auto; margin-right: auto; width: 400px;">
     <h:form>
-      <h3>Conferre - Ingreso de inquilinos</h3>
+      <h3>Conferre - Ingreso de usuarios</h3>
       <h:panelGrid columns="2" cellpadding="5">
         <h:outputLabel value="Correo electrónico" />
-        <p:inputText value="#{rentersController.renter.email}" required="true" label="email" />
+        <p:inputText value="#{assistantsController.assistant.email}" required="true" label="email" />
 
         <h:outputLabel value="Contraseña " />
-        <p:password value="#{rentersController.renter.password}" required="true" label="password" />
+        <p:password value="#{assistantsController.assistant.password}" required="true" label="password" />
 
         <f:facet name="footer">
           <p:commandButton value="Ingresar" update="growl"
-                           actionListener="#{rentersController.login}"/>
-        </f:facet>  
+                           actionListener="#{assistantsController.login}"/>
+          <a href="register.jsf">No tengo cuenta, registrarme</a>
+        </f:facet>
       </h:panelGrid>
     </h:form>
   </div>

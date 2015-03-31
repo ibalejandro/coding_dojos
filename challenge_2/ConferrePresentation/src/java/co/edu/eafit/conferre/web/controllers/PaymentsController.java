@@ -41,6 +41,10 @@ public class PaymentsController {
   
   public void confirmPayment(double amountToPay) {
     
+    if (seatsController.getSeatsToBeBought().isEmpty()) {
+      showMessage("Comprar sillas", "Por favor selecciona al menos una silla");
+      return;
+    }
     //Cambiar el estado de las sillas
     seatsController.updateAndSaveSeatsState(false);
     

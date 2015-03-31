@@ -127,7 +127,7 @@
     <center>
       <p:commandButton value="Comprar sillas" icon="fa fa-credit-card"
                        update="msgs,display,value" oncomplete="PF('dlg').show()"
-                       action="#{seatsController.buySeats('e66bd19d-f5c2-4d4a-9855-a2dd1867520b')}"/>
+                       action="#{seatsController.buySeats(assistantsController.assistant.id)}"/>
       
     </center>
     

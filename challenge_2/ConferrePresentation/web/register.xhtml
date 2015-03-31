@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+  <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+  <div style="display: table; position: absolute; height: 100%; width: 100%;">
+  <div style="display: table-cell; vertical-align: middle;">
+  <div style="margin-left: auto; margin-right: auto; width: 500px;">
+    <h:form>
+      <h3>Conferre - Registro de usuarios</h3>
+      <h:panelGrid columns="2" cellpadding="5">
+        <h:outputLabel value="Correo electrónico" />
+        <p:inputText value="#{assistantsController.assistant.email}" required="true" label="email" />
+
+        <h:outputLabel value="Nombre completo " />
+        <p:inputText value="#{assistantsController.assistant.name}" required="true" label="name" />
+
+        <h:outputLabel value="Documento de identidad " />
+        <p:inputText value="#{assistantsController.assistant.identification}" required="true" label="identification" />
+
+        <h:outputLabel value="Número telefónico " />
+        <p:inputText value="#{assistantsController.assistant.phoneNumber}" required="true" label="phone_number" />
+
+        <h:outputLabel value="Contraseña " />
+        <p:password value="#{assistantsController.assistant.password}" required="true" label="password" />
+
+        <f:facet name="footer">
+          <p:commandButton value="Registrarse" update="growl"
+                           actionListener="#{assistantsController.register}"/>
+          <a href="index.jsf">Ya tengo cuenta, ingresar</a>
+        </f:facet>  
+      </h:panelGrid>
+    </h:form>
+  </div>
+  </div>
+  </div>
+</h:body>
+</html>

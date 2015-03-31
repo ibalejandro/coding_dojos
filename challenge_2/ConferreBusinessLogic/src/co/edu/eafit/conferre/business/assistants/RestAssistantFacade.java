@@ -22,4 +22,22 @@ public class RestAssistantFacade implements AssistantFacade {
     }
     return assistantResult;
   }
+  
+  @Override
+  //@Path("/login")
+  //@POST
+  //@Consumes("application/json")
+  //@Produces("application/json")
+  //Jersey y nosequé json
+  public AssistantTO authenticate(AssistantTO assistant) throws UnitOfWorkException {
+    LoginAssistantUseCase useCase = new LoginAssistantUseCase();
+    AssistantTO assistantResult;
+    try {
+      assistantResult = (AssistantTO) useCase.execute(assistant);
+    }
+    catch (UnitOfWorkException e) {
+      throw e;
+    }
+    return assistantResult;
+  }
 }
