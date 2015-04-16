@@ -20,7 +20,7 @@ class RedemptionsController < ApplicationController
     redemption = NowerCore.take_promo(build_entity(redemption_params))
     render json: {
       success: true,
-      sale: redemption
+      promo: redemption
     }
   end
 
@@ -30,8 +30,8 @@ class RedemptionsController < ApplicationController
     def build_entity(redemption_hash)
       NowerCore::Entities::Redemption.new(redemption_hash)
     end
-    
+
     def redemption_params
-      params.require(:redemption).permit(:sale_id)
+      params.require(:redemption).permit(:promo_id)
     end
 end

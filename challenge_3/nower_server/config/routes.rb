@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # get 'sales/:title/:description/:latitude/:longitude/:expiration_date/:people_limit' => 'sales#add'
 
-  resources :sales
+  resources :promos
   resources :redemptions
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -11,23 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412162323) do
+ActiveRecord::Schema.define(version: 20150416211918) do
 
-  create_table "redemptions", force: true do |t|
-    t.string   "code"
-    t.boolean  "redeemed"
-    t.integer  "sale_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "sales", force: true do |t|
+  create_table "promos", force: true do |t|
     t.string   "title"
     t.string   "description"
     t.float    "latitude"
     t.float    "longitude"
     t.datetime "expiration_date"
     t.integer  "people_limit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "redemptions", force: true do |t|
+    t.string   "code"
+    t.boolean  "redeemed"
+    t.integer  "promo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

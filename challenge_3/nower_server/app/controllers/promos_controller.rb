@@ -1,12 +1,12 @@
-class SalesController < ApplicationController
+class PromosController < ApplicationController
 
-  # GET /sales
+  # GET /promos
   def index
-    @sales = NowerCore.find_all_promos
-    render json: @sales
+    @promos = NowerCore.find_all_promos
+    render json: @promos
   end
 
-  # GET /sales/1
+  # GET /promos/1
   def show
     # TODO Not implemented yet.
     #response = DescribePromo.call id: params[:id]
@@ -14,13 +14,13 @@ class SalesController < ApplicationController
     #render json: @sale
     promo_hash = Hash.new
     promo_hash["id"] = params[:id].to_i
-    @sale = NowerCore.describe_promo(build_entity(promo_hash))
+    @promo = NowerCore.describe_promo(build_entity(promo_hash))
     render json: {
-      sale: @sale
+      promo: @promo
     }
   end
 
-  # POST /sales
+  # POST /promos
   def create
     #response = PublishPromo.call sale_params
     #@sale = response.sale
@@ -36,22 +36,22 @@ class SalesController < ApplicationController
     #  },
     #  status: :unprocessable_entity
     #end
-    @sale = NowerCore.publish_promo(build_entity(sale_params))
+    @promo = NowerCore.publish_promo(build_entity(promo_params))
     render json: {
       success: true,
-      sale: @sale
+      promo: @promo
     }
   end
 
   private
     # Never trust parameters from the scary internet,
     # only allow the white list through.
-    def build_entity(sale_hash)
-      NowerCore::Entities::Promo.new(sale_hash)
+    def build_entity(promo_hash)
+      NowerCore::Entities::Promo.new(promo_hash)
     end
 
-    def sale_params
-      params.require(:sale).permit(:title, :description, :latitude, :longitude,
+    def promo_params
+      params.require(:promo).permit(:title, :description, :latitude, :longitude,
                                    :expiration_date, :people_limit)
 
     end

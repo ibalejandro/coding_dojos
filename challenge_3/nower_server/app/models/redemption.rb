@@ -1,5 +1,5 @@
 class Redemption < ActiveRecord::Base
-  belongs_to :sale
-  validates :sale, presence: true
+  belongs_to :promo
+  validates :promo, presence: true
   validates :code, uniqueness: true
 end

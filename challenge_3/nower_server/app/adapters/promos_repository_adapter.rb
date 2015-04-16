@@ -1,28 +1,28 @@
 class PromosRepositoryAdapter
   def all
-    Sale.all.map { |promo| serialize(promo) }
+    Promo.all.map { |promo| serialize(promo) }
   end
 
   def count
-    Sale.count
+    Promo.count
   end
 
   # TODO: handle case when some validation goes wrong
   def save(promo)
-    serialize Sale.create(title: promo.title, description: promo.description,
+    serialize Promo.create(title: promo.title, description: promo.description,
                           latitude: promo.latitude, longitude: promo.longitude,
                           expiration_date: promo.expiration_date,
                           people_limit: promo.people_limit)
   end
 
   def save_redemption(redemption)
-    serialize_redemption Redemption.create(sale_id: redemption.sale_id, 
-                                           code: redemption.code, 
+    serialize_redemption Redemption.create(promo_id: redemption.promo_id,
+                                           code: redemption.code,
                                            redeemed: redemption.redeemed)
   end
 
   def find(id)
-    promo = Sale.find(id)
+    promo = Promo.find(id)
     promo = serialize promo if promo
     promo
   end
@@ -33,11 +33,11 @@ class PromosRepositoryAdapter
   end
 
   def delete_all
-    Sale.delete_all
+    Promo.delete_all
   end
 
   def delete(id)
-    Sale.find(id).destroy
+    Promo.find(id).destroy
   end
 
   private
