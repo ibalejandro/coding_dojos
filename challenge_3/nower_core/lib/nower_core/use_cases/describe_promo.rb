@@ -1,11 +1,12 @@
 module NowerCore
   module UseCases
-    class PublishPromo
+    class DescribePromo
       def execute(promo)
-        promo_repo.save promo
+        promo_repo.find promo.id
       end
 
       private
+
       def promo_repo
         Repository.for(:promo)
       end

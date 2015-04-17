@@ -17,11 +17,20 @@ class RedemptionsController < ApplicationController
     #  },
     #  status: :unprocessable_entity
     #end
+    redemption = NowerCore.take_promo(build_entity(redemption_params))
+    render json: {
+      success: true,
+      sale: redemption
+    }
   end
 
   private
     # Never trust parameters from the scary internet,
     # only allow the white list through.
+    def build_entity(redemption_hash)
+      NowerCore::Entities::Redemption.new(redemption_hash)
+    end
+    
     def redemption_params
       params.require(:redemption).permit(:sale_id)
     end

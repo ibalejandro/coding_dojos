@@ -12,6 +12,12 @@ class SalesController < ApplicationController
     #response = DescribePromo.call id: params[:id]
     #@sale = response.sale
     #render json: @sale
+    promo_hash = Hash.new
+    promo_hash["id"] = params[:id].to_i
+    @sale = NowerCore.describe_promo(build_entity(promo_hash))
+    render json: {
+      sale: @sale
+    }
   end
 
   # POST /sales
@@ -30,8 +36,9 @@ class SalesController < ApplicationController
     #  },
     #  status: :unprocessable_entity
     #end
-    @sale = NowerCore.publish_promo(sale_params)
+    @sale = NowerCore.publish_promo(build_entity(sale_params))
     render json: {
+      success: true,
       sale: @sale
     }
   end
@@ -39,8 +46,13 @@ class SalesController < ApplicationController
   private
     # Never trust parameters from the scary internet,
     # only allow the white list through.
+    def build_entity(sale_hash)
+      NowerCore::Entities::Promo.new(sale_hash)
+    end
+
     def sale_params
       params.require(:sale).permit(:title, :description, :latitude, :longitude,
                                    :expiration_date, :people_limit)
+
     end
 end

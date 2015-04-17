@@ -5,6 +5,7 @@ module NowerCore
                     :expiration_date, :people_limit
 
       def initialize(promo)
+        @id = promo["id"]
         @title = promo["title"]
         @description = promo["description"]
         @latitude = promo["latitude"]

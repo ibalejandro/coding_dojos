@@ -15,8 +15,21 @@ class PromosRepositoryAdapter
                           people_limit: promo.people_limit)
   end
 
+  def save_redemption(redemption)
+    serialize_redemption Redemption.create(sale_id: redemption.sale_id, 
+                                           code: redemption.code, 
+                                           redeemed: redemption.redeemed)
+  end
+
   def find(id)
-    serialize Sale.find(id)
+    promo = Sale.find(id)
+    promo = serialize promo if promo
+    promo
+  end
+
+  def redemption_code_exists?(code)
+    return true if Redemption.find_by(code: code)
+    return false
   end
 
   def delete_all
@@ -31,7 +44,9 @@ class PromosRepositoryAdapter
 
   def serialize(promo)
     entity = NowerCore::Entities::Promo.new(promo)
-    entity.id = promo.id
-    entity
+  end
+
+  def serialize_redemption(redemption)
+    entity = NowerCore::Entities::Redemption.new(redemption)
   end
 end
