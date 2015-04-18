@@ -1,0 +1,12 @@
+.bar-balanced {
+    box-shadow: 0px 5px 5px grey;
+}
+
+.scroll {
+    height: 100%;
+}
+ 
+#map {
+    width: 100%;
+    height: 100%;
+}
