@@ -20,7 +20,7 @@ class RedemptionsController < ApplicationController
     redemption = NowerCore.take_promo(build_entity(redemption_params))
     render json: {
       success: true,
-      promo: redemption
+      redemption: redemption
     }
   end
 
